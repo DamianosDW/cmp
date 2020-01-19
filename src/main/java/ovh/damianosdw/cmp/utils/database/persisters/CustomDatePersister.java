@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 public class CustomDatePersister extends DateType
 {
     @Getter
-    private static final CustomDatePersister singleTon = new CustomDatePersister();
+    private static final CustomDatePersister singleton = new CustomDatePersister();
 
     private CustomDatePersister()
     {
