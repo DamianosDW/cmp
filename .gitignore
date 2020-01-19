@@ -1,0 +1,10 @@
+.idea/
+db/
+target/
+config.txt
+*.log
+*.iml
+pom.xml
+src/main/java/ovh/damianosdw/cmp/utils/DatabaseManager.java
+src/main/resources/META-INF/
+src/main/resources/hibernate.cfg.xml

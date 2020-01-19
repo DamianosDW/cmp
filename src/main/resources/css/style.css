@@ -1,0 +1,160 @@
+/*
+ * Created by DamianosDW.
+ * https://damianosdw.ovh
+ */
+
+.defaultContainer
+{
+    -fx-background-color: transparent;
+}
+
+.appBackground
+{
+    /* Background pattern from subtlepatterns.com */
+    -fx-background-image: url("../images/dust_scratches.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+/* MENU */
+.customMenuButton
+{
+    -fx-background-color: #80ccff;
+    -fx-text-fill: black;
+    -fx-pref-width: 225px;
+    -fx-pref-height: 100px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-cursor: HAND;
+}
+
+.customMenuButton:hover
+{
+    -fx-background-color: #0099ff;
+    -fx-text-fill: white;
+}
+
+.menu-button
+{
+    -fx-background-color: #80ccff;
+    -fx-text-fill: black;
+    -fx-pref-width: 225px;
+    -fx-pref-height: 100px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-cursor: HAND;
+}
+
+.menu-button .arrow
+{
+    -fx-background-color: black;
+}
+
+.menu-button:hover
+{
+    -fx-background-color: #0099ff;
+    -fx-text-fill: white;
+}
+
+.menu-item
+{
+    -fx-background-color: #80ccff;
+    -fx-text-fill: black;
+}
+
+.menu-item:hover
+{
+    -fx-background-color: #0099ff;
+    -fx-text-fill: white;
+    -fx-cursor: HAND;
+}
+
+.menu-item:focused
+{
+    -fx-background-color: #0099ff;
+    -fx-text-fill: white;
+}
+
+.context-menu {
+    -fx-skin: "com.sun.javafx.scene.control.skin.ContextMenuSkin";
+    -fx-background-color: #80ccff;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0;
+    -fx-padding: 10 0 10 0;
+}
+
+/* ACCORDION CONTAINER */
+.accordion
+{
+    -fx-body-color: #80ccff;
+    -fx-inner-border: #80ccff;
+    -fx-box-border: transparent;
+    -fx-mark-color: black;
+    -fx-focus-color: lightblue;
+    -fx-text-fill: black;
+}
+
+.accordion:focused
+{
+    -fx-body-color: #0099ff;
+    -fx-inner-border: #0099ff;
+    -fx-box-border: transparent;
+    -fx-mark-color: white;
+    -fx-focus-color: #0066ff;
+    -fx-text-fill: white;
+}
+
+/* BUTTON */
+.button
+{
+    -fx-background-color: #80ccff;
+    -fx-text-fill: black;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-width: 2px;
+    -fx-border-color: transparent;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-cursor: HAND;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.button:hover
+{
+    -fx-background-color: #0099ff;
+    -fx-text-fill: white;
+    -fx-cursor: HAND;
+}
+
+/* TEXT AREA AND TEXT FIELD */
+.text-area,
+.text-area .content,
+.text-field
+{
+    -fx-background-color: #80ccff;
+    -fx-background-radius: 0;
+    -fx-text-fill: black;
+}
+
+/* COMBOBOX */
+.combo-box
+{
+    -fx-background-color: #80ccff;
+    -fx-background-radius: 0;
+    -fx-font-size: 14px;
+}
+
+/* TABLEVIEW */
+.table-view
+{
+    -fx-font-size: 14px;
+}

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1200.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ovh.damianosdw.cmp.modules.MainModule">
+   <children>
+      <BorderPane fx:id="mainContainer" styleClass="appBackground" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <HBox fx:id="appStatusContainer" alignment="CENTER_LEFT" prefHeight="50.0" styleClass="defaultContainer" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets left="25.0" right="25.0" />
+               </padding>
+            </HBox>
+         </bottom>
+         <left>
+            <VBox alignment="TOP_CENTER" prefWidth="225.0" spacing="17.0" styleClass="defaultContainer" BorderPane.alignment="CENTER">
+               <children>
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Finanse">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Wykres zysków i/lub strat" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem mnemonicParsing="false" text="Zarządzanie finansami" />
+                    </items>
+                  </MenuButton>
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Zadania">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Rozdzielenie zadań" />
+                      <MenuItem mnemonicParsing="false" text="Lista zadań" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Dodaj zadanie" />
+                    </items>
+                  </MenuButton>
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Pracownicy">
+                    <items>
+                        <MenuItem fx:id="employeesInfo" mnemonicParsing="false" onAction="#loadEmployeesModule" text="Informacje o pracowniku" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Lista stanowisk" />
+                        <MenuItem mnemonicParsing="false" text="Lista pracowników" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Sprawozdania liderów zespołów" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem mnemonicParsing="false" text="Dodaj pracownika" />
+                      <MenuItem mnemonicParsing="false" text="Dodaj stanowisko" />
+                    </items>
+                  </MenuButton>
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Raporty">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Raport finansowy z miesiąca" />
+                      <MenuItem mnemonicParsing="false" text="Raport finansowy z roku" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="do zmiany" />
+                    </items>
+                  </MenuButton>
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Rekrutacja">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Zarządzanie procesem rekrutacyjnym" />
+                      <MenuItem mnemonicParsing="false" text="Lista nadesłanych aplikacji" />
+                        <MenuItem mnemonicParsing="false" text="123" />
+                    </items>
+                  </MenuButton>
+                  <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="System urlopów">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Lista pracowników na urlopie" />
+                        <MenuItem mnemonicParsing="false" text="Zmiana ustawień urlopów" />
+                     </items>
+                  </MenuButton>
+                  <MenuButton fx:id="info" alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Pozostałe opcje">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="O aplikacji" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                  </MenuButton>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-width: 3; -fx-border-color: #80ccff;" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

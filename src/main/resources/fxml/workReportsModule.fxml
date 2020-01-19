@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="970.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ovh.damianosdw.cmp.modules.WorkReportsModule">
+   <children>
+      <TabPane styleClass="defaultContainer" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab closable="false" text="Nowe sprawozdanie">
+               <content>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="defaultContainer">
+                     <children>
+                        <Label text="Nowe sprawozdanie">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label prefWidth="850.0" text="Sprawdź, czy dane w polach &quot;Imię&quot; i &quot;Nazwisko&quot; się zgadzają, uzupełnij treść sprawozdania i wyślij dane przyciskiem &quot;Wyślij sprawozdanie&quot;" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" prefWidth="200.0" spacing="50.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="100.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Imię:">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="name" editable="false">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="100.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Nazwisko:">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="surname" editable="false">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox alignment="CENTER" prefHeight="100.0" spacing="5.0">
+                           <children>
+                              <Label text="Treść sprawozdania:">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="workReport" maxWidth="700.0" minHeight="325.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="25.0" right="25.0" />
+                           </padding>
+                        </VBox>
+                        <Button fx:id="sendWorkReportButton" mnemonicParsing="false" onAction="#sendWorkReport" text="Wyślij sprawozdanie" />
+                     </children>
+                     <padding>
+                        <Insets left="15.0" right="15.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </content>
+          </Tab>
+          <Tab closable="false" text="Lista sprawozdań">
+               <content>
+                  <VBox alignment="TOP_CENTER" spacing="15.0" styleClass="defaultContainer">
+                     <children>
+                        <Label text="Lista sprawozdań">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="workReportsTable" prefHeight="500.0">
+                          <columns>
+                            <TableColumn editable="false" minWidth="160.0" prefWidth="-1.0" resizable="false" text="Data wysłania" />
+                            <TableColumn editable="false" minWidth="190.0" prefWidth="-1.0" text="Pracownik" />
+                              <TableColumn editable="false" minWidth="588.0" prefWidth="-1.0" sortable="false" text="Treść sprawozdania" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="refreshWorkReportsButton" mnemonicParsing="false" onAction="#showWorkReports" text="Odśwież tabelę" />
+                     </children>
+                     <padding>
+                        <Insets left="15.0" right="15.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
