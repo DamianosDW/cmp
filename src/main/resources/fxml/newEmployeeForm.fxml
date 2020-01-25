@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="600.0" styleClass="defaultContainer" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ovh.damianosdw.cmp.modules.NewEmployeeForm">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="600.0" styleClass="defaultContainer" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ovh.damianosdw.cmp.modules.NewEmployeeForm">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="250.0" layoutY="179.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
@@ -99,6 +99,40 @@
                   <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                </padding>
             </VBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="100.0" spacing="5.0">
+                     <children>
+                        <Label text="Login:">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="login">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                     <padding>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" spacing="5.0">
+                     <children>
+                        <Label text="Grupa:">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="groups" prefWidth="175.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
             <VBox alignment="CENTER" prefHeight="100.0" spacing="5.0">
                <children>
                   <Label text="Kontakt:">
