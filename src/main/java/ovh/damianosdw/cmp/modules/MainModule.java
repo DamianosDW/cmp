@@ -8,18 +8,13 @@ package ovh.damianosdw.cmp.modules;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import lombok.Getter;
 import ovh.damianosdw.cmp.exceptions.ModuleLoadErrorException;
-import ovh.damianosdw.cmp.misc.AppStatusType;
 import ovh.damianosdw.cmp.utils.AppUtils;
 import ovh.damianosdw.cmp.utils.DatabaseManager;
-import ovh.damianosdw.cmp.utils.FxmlUtils;
 import ovh.damianosdw.cmp.utils.database.models.Employee;
 
 import java.sql.SQLException;
@@ -49,8 +44,6 @@ public class MainModule extends Module
     void initialize()
     {
         giveThisControllerToOtherModules();
-        DatabaseManager.INSTANCE.initDatabase();
-        AppStatus.showAppStatus(AppStatusType.DEBUG, "Załadowano aplikację!");
     }
 
     private static Employee getEmployeeInfo(long employeeId)
@@ -76,16 +69,10 @@ public class MainModule extends Module
         EmployeesModule.setMainModule(this);
     }
 
-    public void load(Stage primaryStage) throws ModuleLoadErrorException
-    {
-        Parent root = FxmlUtils.loadFxmlWindow(fxmlPath);
-        primaryStage.setScene(new Scene(root));
-    }
-
     @Override
     public void load() throws ModuleLoadErrorException
     {
-        throw new ModuleLoadErrorException("This method is disabled! Use load(Stage).");
+        throw new ModuleLoadErrorException("This method is disabled! Use loadModuleToContainer().");
     }
 
     @Override
