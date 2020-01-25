@@ -19,6 +19,6 @@ public class UserGroup
 {
     @DatabaseField(columnName = "group_id", unique = true, generatedId = true, canBeNull = false)
     private long groupId;
-    @DatabaseField(columnName = "name", canBeNull = false)
+    @DatabaseField(columnName = "name", unique = true, canBeNull = false)
     private String name;
 }
