@@ -10,7 +10,9 @@ import com.j256.ormlite.dao.DaoManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import lombok.Setter;
+import ovh.damianosdw.cmp.misc.AppStatusType;
 import ovh.damianosdw.cmp.utils.AppUtils;
 import ovh.damianosdw.cmp.utils.DatabaseManager;
 import ovh.damianosdw.cmp.utils.database.models.JobTitle;
@@ -31,6 +33,8 @@ public class NewJobTitleForm
 
     @Setter
     private static EmployeesModule employeesModule;
+    @Setter
+    private static Stage stage;
 
     @FXML
     void initialize()
@@ -55,7 +59,8 @@ public class NewJobTitleForm
 
                 DatabaseManager.INSTANCE.saveDataToDatabase(dao, jobTitle);
                 employeesModule.showJobTitles();
-                AppUtils.showInformationAlert("Dodano nowe stanowisko!");
+                AppUtils.closeAppWindow(stage);
+                AppStatus.showAppStatus(AppStatusType.OK, "Dodano nowe stanowisko!");
             } catch(SQLException e) {
                 AppUtils.showWarningAlert("Nie udało się zapisać nowego stanowiska!");
             }

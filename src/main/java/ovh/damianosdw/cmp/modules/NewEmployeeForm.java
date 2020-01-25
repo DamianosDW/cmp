@@ -13,12 +13,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import lombok.Setter;
+import org.passay.CharacterData;
+import org.passay.*;
 import ovh.damianosdw.cmp.misc.AppStatusType;
 import ovh.damianosdw.cmp.utils.AppUtils;
 import ovh.damianosdw.cmp.utils.DatabaseManager;
 import ovh.damianosdw.cmp.utils.database.models.Employee;
 import ovh.damianosdw.cmp.utils.database.models.JobTitle;
+import ovh.damianosdw.cmp.utils.database.models.User;
+import ovh.damianosdw.cmp.utils.database.models.UserGroup;
 import ovh.damianosdw.cmp.utils.database.models.builders.EmployeeBuilder;
+import ovh.damianosdw.cmp.utils.database.models.builders.UserBuilder;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -39,6 +44,10 @@ public class NewEmployeeForm
     @FXML
     private Label salaryRangeInfo;
     @FXML
+    private TextField login;
+    @FXML
+    private ComboBox<UserGroup> groups;
+    @FXML
     private TextArea contact;
 
     @Setter
@@ -57,9 +66,19 @@ public class NewEmployeeForm
             jobTitles.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
                 salaryRangeInfo.setText(jobSalaryRanges.get(newValue.getName()));
             }));
+
+            groups.getItems().addAll(getUserGroupsFromDatabase());
+            // Select "EMPLOYEE" group
+            groups.getSelectionModel().select(1);
         } catch(Exception e) {
             AppStatus.showAppStatus(AppStatusType.WARNING, "Nie udało się przygotować formularza!");
         }
+    }
+
+    private List<UserGroup> getUserGroupsFromDatabase() throws SQLException
+    {
+        Dao<UserGroup, Long> dao = DaoManager.createDao(DatabaseManager.INSTANCE.getConnectionSource(), UserGroup.class);
+        return DatabaseManager.INSTANCE.getAllRecordsFromTable(dao);
     }
 
     @FXML
@@ -75,17 +94,23 @@ public class NewEmployeeForm
             BigDecimal employeeSalary = BigDecimal.valueOf(Double.parseDouble(salary.getText()));
             String employeeContact = contact.getText();
 
-            Employee newEmployee = EmployeeBuilder.builder()
-                    .name(employeeName)
-                    .surname(employeeSurname)
-                    .jobTitle(employeeJobTitle)
-                    .salary(employeeSalary)
-                    .contact(employeeContact)
-                    .build();
-
             try {
-                Dao<Employee, Long> dao = DaoManager.createDao(DatabaseManager.INSTANCE.getConnectionSource(), Employee.class);
-                DatabaseManager.INSTANCE.saveDataToDatabase(dao, newEmployee);
+                Employee newEmployee = EmployeeBuilder.builder()
+                        .name(employeeName)
+                        .surname(employeeSurname)
+                        .jobTitle(employeeJobTitle)
+                        .salary(employeeSalary)
+                        .contact(employeeContact)
+                        .build();
+
+                Dao<User, Long> dao = DaoManager.createDao(DatabaseManager.INSTANCE.getConnectionSource(), User.class);
+                User user = prepareUserInfo(newEmployee);
+
+                DatabaseManager.INSTANCE.saveDataToDatabase(dao, user);
+                AppUtils.showInformationAlert("Konto pracownika zostało utworzone! Szczegółowe informacje:\n" +
+                        "Login: " + user.getLogin() + "\n" +
+                        "Hasło: " + user.getPassword() + "\n" +
+                        "Grupa: " + user.getUserGroup());
                 AppStatus.showAppStatus(AppStatusType.OK, "Dodano pracownika!");
 //                clearForm();
             } catch(SQLException e) {
@@ -94,6 +119,46 @@ public class NewEmployeeForm
         }
         else
             AppUtils.showWarningAlert("Nie wypełniłeś/aś wszystkich pól!");
+    }
+
+    private User prepareUserInfo(Employee employee)
+    {
+        return UserBuilder.builder()
+                .login(login.getText())
+                .password(generateUserPassword())
+                .userGroup(groups.getSelectionModel().getSelectedItem())
+                .employee(employee)
+                .active(true)
+                .build();
+    }
+
+    private String generateUserPassword()
+    {
+        PasswordGenerator generator = new PasswordGenerator();
+        CharacterData upperCaseCharacters = EnglishCharacterData.UpperCase;
+        CharacterRule upperCaseRule = new CharacterRule(upperCaseCharacters);
+        upperCaseRule.setNumberOfCharacters(3);
+
+        CharacterData digits = EnglishCharacterData.Digit;
+        CharacterRule digitRule = new CharacterRule(digits);
+        digitRule.setNumberOfCharacters(4);
+
+        CharacterData specialCharacters = new CharacterData() {
+            public String getErrorCode()
+            {
+                return DigestDictionaryRule.ERROR_CODE;
+            }
+
+            public String getCharacters()
+            {
+                return "!@#$%^&*()_+;<>?/";
+            }
+        };
+
+        CharacterRule specialCharactersRule = new CharacterRule(specialCharacters);
+        specialCharactersRule.setNumberOfCharacters(2);
+
+        return generator.generatePassword(10, upperCaseRule, digitRule, specialCharactersRule);
     }
 
     private void clearForm()

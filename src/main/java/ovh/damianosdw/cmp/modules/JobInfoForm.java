@@ -45,8 +45,15 @@ public class JobInfoForm
         String salaryRange = jobTitle.getSalaryRange();
 
         jobName.setText(jobTitle.getName());
-        minSalary.setText(salaryRange.substring(0, salaryRange.indexOf("-")).trim());
-        maxSalary.setText(salaryRange.substring(salaryRange.indexOf("-") + 1).trim());
+
+        if(salaryRange.contains("-"))
+        {
+            minSalary.setText(salaryRange.substring(0, salaryRange.indexOf("-")).trim());
+            maxSalary.setText(salaryRange.substring(salaryRange.indexOf("-") + 1).trim());
+        }
+        else
+            minSalary.setText(salaryRange);
+
         responsibilities.setText(jobTitle.getResponsibilities());
     }
 
