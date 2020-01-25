@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import lombok.Setter;
+import org.mindrot.jbcrypt.BCrypt;
 import org.passay.CharacterData;
 import org.passay.*;
 import ovh.damianosdw.cmp.misc.AppStatusType;
@@ -103,13 +104,15 @@ public class NewEmployeeForm
                         .contact(employeeContact)
                         .build();
 
-                Dao<User, Long> dao = DaoManager.createDao(DatabaseManager.INSTANCE.getConnectionSource(), User.class);
+                String generatedPassword = generateUserPassword();
                 User user = prepareUserInfo(newEmployee);
+                user.setPassword(BCrypt.hashpw(generatedPassword, BCrypt.gensalt()));
 
+                Dao<User, Long> dao = DaoManager.createDao(DatabaseManager.INSTANCE.getConnectionSource(), User.class);
                 DatabaseManager.INSTANCE.saveDataToDatabase(dao, user);
                 AppUtils.showInformationAlert("Konto pracownika zostało utworzone! Szczegółowe informacje:\n" +
                         "Login: " + user.getLogin() + "\n" +
-                        "Hasło: " + user.getPassword() + "\n" +
+                        "Hasło: " + generatedPassword + "\n" +
                         "Grupa: " + user.getUserGroup());
                 AppStatus.showAppStatus(AppStatusType.OK, "Dodano pracownika!");
 //                clearForm();
@@ -125,7 +128,6 @@ public class NewEmployeeForm
     {
         return UserBuilder.builder()
                 .login(login.getText())
-                .password(generateUserPassword())
                 .userGroup(groups.getSelectionModel().getSelectedItem())
                 .employee(employee)
                 .active(true)
@@ -159,14 +161,5 @@ public class NewEmployeeForm
         specialCharactersRule.setNumberOfCharacters(2);
 
         return generator.generatePassword(10, upperCaseRule, digitRule, specialCharactersRule);
-    }
-
-    private void clearForm()
-    {
-        name.clear();
-        surname.clear();
-        jobTitles.getSelectionModel().selectFirst();
-        salary.clear();
-        contact.clear();
     }
 }

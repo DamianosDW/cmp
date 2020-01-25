@@ -103,14 +103,25 @@ public class LoginSystem extends Module
             String login = loginField.getText().trim();
             User user = getUserCredentials(login);
 
-            if(user != null && BCrypt.checkpw(passwordField.getText().trim(), user.getPassword()))
+            if(user != null)
             {
-                MainModule mainModule = new MainModule();
-                Main.getMainStage().setScene(new Scene(mainModule.loadModuleToContainer()));
-                AppStatus.showAppStatus(AppStatusType.OK, "Zalogowano pomyślnie!");
+                if(user.isActive())
+                {
+                    if(BCrypt.checkpw(passwordField.getText().trim(), user.getPassword()))
+                    {
+                        MainModule mainModule = new MainModule();
+                        MainModule.setLoggedInEmployee(user.getEmployee());
+                        Main.getMainStage().setScene(new Scene(mainModule.loadModuleToContainer()));
+                        AppStatus.showAppStatus(AppStatusType.OK, "Zalogowano pomyślnie!");
+                    }
+                    else
+                        AppStatus.showAppStatus(AppStatusType.WARNING, "Nieprawidłowy login lub hasło!");
+                }
+                else
+                    AppStatus.showAppStatus(AppStatusType.WARNING, "Twoje konto zostało zablokowane!");
             }
             else
-                throw new DatabaseErrorException("Invalid login or password!");
+                throw new DatabaseErrorException("Invalid login!");
         } catch(SQLException e) {
             AppStatus.showAppStatus(AppStatusType.ERROR, "Wystąpił problem z bazą danych! Nie można się zalogować.");
             e.printStackTrace(); //TODO REMOVE IT
