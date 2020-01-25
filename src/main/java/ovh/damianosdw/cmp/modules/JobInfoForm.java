@@ -10,6 +10,7 @@ import com.j256.ormlite.dao.DaoManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import lombok.Setter;
 import ovh.damianosdw.cmp.utils.AppUtils;
 import ovh.damianosdw.cmp.utils.DatabaseManager;
@@ -33,6 +34,9 @@ public class JobInfoForm
     private static EmployeesModule employeesModule;
     @Setter
     private static JobTitle jobTitle;
+    @Setter
+    private static Stage stage;
+    private long jobId;
 
     @FXML
     void initialize()
@@ -42,6 +46,7 @@ public class JobInfoForm
 
     private void fillFormWithJobInfo()
     {
+        jobId = jobTitle.getJobId();
         String salaryRange = jobTitle.getSalaryRange();
 
         jobName.setText(jobTitle.getName());
@@ -67,6 +72,7 @@ public class JobInfoForm
             try {
                 Dao<JobTitle, Long> dao = DaoManager.createDao(DatabaseManager.INSTANCE.getConnectionSource(), JobTitle.class);
                 JobTitle jobTitle = JobTitleBuilder.builder()
+                        .jobId(jobId)
                         .name(jobName.getText())
                         .salaryRange(minSalary.getText() + " - " + maxSalary.getText())
                         .responsibilities(responsibilities.getText())
@@ -74,6 +80,7 @@ public class JobInfoForm
 
                 DatabaseManager.INSTANCE.updateDataInDatabase(dao, jobTitle);
                 employeesModule.showJobTitles();
+                AppUtils.closeAppWindow(stage);
                 AppUtils.showInformationAlert("Zaktualizowano stanowisko!");
             } catch(SQLException e) {
                 AppUtils.showWarningAlert("Nie udało się zaktualizować stanowiska! Błąd:\n" + e.getMessage());

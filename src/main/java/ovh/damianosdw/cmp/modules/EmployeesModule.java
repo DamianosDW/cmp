@@ -202,6 +202,7 @@ public class EmployeesModule extends Module
         stage.setTitle("Aktualizacja danych o pracowniku");
         stage.setScene(scene);
         stage.setResizable(false);
+        EmployeeInfoForm.setStage(stage);
         stage.show();
     }
 
@@ -308,6 +309,7 @@ public class EmployeesModule extends Module
         stage.setTitle("Aktualizacja danych o stanowisku");
         stage.setScene(scene);
         stage.setResizable(false);
+        JobInfoForm.setStage(stage);
         stage.show();
     }
 

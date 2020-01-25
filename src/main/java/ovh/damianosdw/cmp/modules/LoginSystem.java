@@ -54,6 +54,7 @@ public class LoginSystem extends Module
     @FXML
     void initialize()
     {
+        //DatabaseManager.INSTANCE.clearDatabase();
         DatabaseManager.INSTANCE.initDatabase();
         bindElementsToProperProperties();
         loadAppStatusModule();
