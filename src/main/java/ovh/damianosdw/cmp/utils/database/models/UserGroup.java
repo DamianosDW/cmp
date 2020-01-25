@@ -21,4 +21,10 @@ public class UserGroup
     private long groupId;
     @DatabaseField(columnName = "name", unique = true, canBeNull = false)
     private String name;
+
+    @Override
+    public String toString() //used by Combobox
+    {
+        return name;
+    }
 }
