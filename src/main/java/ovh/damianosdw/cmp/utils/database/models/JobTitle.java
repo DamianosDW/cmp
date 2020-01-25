@@ -20,7 +20,7 @@ public class JobTitle
 {
     @DatabaseField(columnName = "job_id", unique = true, generatedId = true, canBeNull = false)
     private long jobId;
-    @DatabaseField(columnName = "name", canBeNull = false)
+    @DatabaseField(columnName = "name", unique = true, canBeNull = false)
     private String name;
     @DatabaseField(columnName = "salary_range", canBeNull = false)
     private String salaryRange;
