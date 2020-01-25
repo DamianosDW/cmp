@@ -19,7 +19,7 @@ public class User
 {
     @DatabaseField(columnName = "user_id", unique = true, generatedId = true, canBeNull = false)
     private long userId;
-    @DatabaseField(columnName = "employee_id", foreign = true, foreignAutoRefresh = true, canBeNull = false)
+    @DatabaseField(columnName = "employee_id", foreign = true, foreignAutoRefresh = true, foreignAutoCreate = true, canBeNull = false)
     private Employee employee;
     @DatabaseField(columnName = "login", unique = true, canBeNull = false)
     private String login;
