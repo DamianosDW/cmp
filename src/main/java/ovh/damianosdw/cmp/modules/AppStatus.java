@@ -36,7 +36,7 @@ public class AppStatus
 
 //    private static Label dbStatus = prepareDbStatusIndicator();
 
-    public static void showAppStatus(AppStatusType type, String message) //TODO MERGE METHODS
+    public static void showAppStatus(AppStatusType type, String message)
     {
         if(mainModule == null)
             showAppStatusInLoginSystem(type, message);
