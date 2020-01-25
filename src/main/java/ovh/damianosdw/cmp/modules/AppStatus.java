@@ -24,6 +24,8 @@ public class AppStatus
     private static Logger logger = LoggerFactory.getLogger(AppStatus.class);
     @Setter
     private static MainModule mainModule;
+    @Setter
+    private static LoginSystem loginSystem;
 
     private static final double iconSize = 36;
     private static final Glyph ok = AppUtils.getFontAwesome().create("\uf14a").size(iconSize).color(Color.GREEN);
@@ -34,13 +36,12 @@ public class AppStatus
 
 //    private static Label dbStatus = prepareDbStatusIndicator();
 
-    public static void showAppStatus(AppStatusType type, String message)
+    public static void showAppStatus(AppStatusType type, String message) //TODO MERGE METHODS
     {
-        Label appStatus = prepareAppStatusLabel(type, message);
-        mainModule.getAppStatusContainer().getChildren().clear();
-        mainModule.getAppStatusContainer().getChildren().add(appStatus);
-        hideAppStatus();
-
+        if(mainModule == null)
+            showAppStatusInLoginSystem(type, message);
+        else
+            showAppStatusInMainModule(type, message);
         //TODO REMOVE IT
 //        if(mainModule.getAppStatusContainer().getChildren().contains(dbStatus))
 //        {
@@ -63,6 +64,22 @@ public class AppStatus
 //            }
 //        });
         //TODO REMOVE IT
+    }
+
+    private static void showAppStatusInLoginSystem(AppStatusType type, String message)
+    {
+        Label appStatus = prepareAppStatusLabel(type, message);
+        loginSystem.getAppStatusContainer().getChildren().clear();
+        loginSystem.getAppStatusContainer().getChildren().add(appStatus);
+        hideAppStatus();
+    }
+
+    private static void showAppStatusInMainModule(AppStatusType type, String message)
+    {
+        Label appStatus = prepareAppStatusLabel(type, message);
+        mainModule.getAppStatusContainer().getChildren().clear();
+        mainModule.getAppStatusContainer().getChildren().add(appStatus);
+        hideAppStatus();
     }
 
     private static Label prepareAppStatusLabel(AppStatusType type, String message)
@@ -112,7 +129,10 @@ public class AppStatus
             }
 
             Platform.runLater(() -> {
-                mainModule.getAppStatusContainer().getChildren().clear();
+                if(mainModule == null)
+                    loginSystem.getAppStatusContainer().getChildren().clear();
+                else
+                    mainModule.getAppStatusContainer().getChildren().clear();
 
 //                if(!mainModule.getAppStatusContainer().getChildren().contains(dbStatus)) //TODO REMOVE IT
 //                    mainModule.getAppStatusContainer().getChildren().add(dbStatus);
