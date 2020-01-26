@@ -38,7 +38,7 @@
                         <MenuItem mnemonicParsing="false" text="Dodaj zadanie" />
                     </items>
                   </MenuButton>
-                  <Button mnemonicParsing="false" onAction="#loadEmployeesModule" styleClass="customMenuButton" text="Pracownicy, stanowiska oraz sprawozdania" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="employeesModuleButton" mnemonicParsing="false" onAction="#loadEmployeesModule" styleClass="customMenuButton" text="Pracownicy, stanowiska oraz sprawozdania" textAlignment="CENTER" wrapText="true" />
                   <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Raporty">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Raport finansowy z miesiąca" />
