@@ -24,6 +24,7 @@ import ovh.damianosdw.cmp.utils.DatabaseManager;
 import ovh.damianosdw.cmp.utils.FxmlUtils;
 import ovh.damianosdw.cmp.utils.database.models.Employee;
 import ovh.damianosdw.cmp.utils.database.models.JobTitle;
+import ovh.damianosdw.cmp.utils.database.models.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -35,6 +36,9 @@ public class EmployeesModule extends Module
     {
         super("/fxml/employees.fxml", "Pracownicy, stanowiska i sprawozdania");
     }
+
+    @FXML
+    private Accordion mainContainer;
 
     @FXML
     private TableView<Employee> employees;
@@ -70,17 +74,8 @@ public class EmployeesModule extends Module
     void initialize()
     {
         giveThisControllerToOtherModules();
-
-        // Configure TableView (set proper info when data is not available)
-        employees.setPlaceholder(new Label("Brak pracowników!"));
-        jobTitles.setPlaceholder(new Label("Brak stanowisk!"));
-
-        setCellValueFactoryForEmployeeTableColumns();
-        setCellValueFactoryForJobTitleTableColumns();
-
-        showAllEmployees();
-        showJobTitles();
         loadWorkReportsModule();
+        configureModule();
     }
 
     private void giveThisControllerToOtherModules()
@@ -138,11 +133,9 @@ public class EmployeesModule extends Module
         Button modifyEmployeeButton = prepareActionButton(modify);
         modifyEmployeeButton.setOnAction(event -> showEmployeeModificationWindow(employee));
 
-        Glyph dismiss = AppUtils.getFontAwesome().create("\uf023").size(iconSize).color(Color.BLACK);
-        Button dismissEmployeeButton = prepareActionButton(dismiss);
-        dismissEmployeeButton.setOnAction(event -> showEmployeeDismissalConfirmationWindow(employee));
+        Button employeeAccountButton = prepareEmployeeAccountButton(employee);
 
-        containerForActionButtons.getChildren().addAll(modifyEmployeeButton, dismissEmployeeButton);
+        containerForActionButtons.getChildren().addAll(modifyEmployeeButton, employeeAccountButton);
         containerForEmployeeActionButtons.getChildren().add(containerForActionButtons);
     }
 
@@ -151,6 +144,30 @@ public class EmployeesModule extends Module
         HBox container = new HBox();
         container.setStyle("-fx-pref-height: 25px; -fx-alignment: center; -fx-spacing: 15;");
         return container;
+    }
+
+    private Button prepareEmployeeAccountButton(Employee employee)
+    {
+        Button employeeAccountButton = null;
+
+        try {
+            if(checkIfAccountIsActive(employee.getEmployeeId()))
+            {
+                Glyph lock = AppUtils.getFontAwesome().create("\uf023").size(iconSize).color(Color.DARKRED);
+                employeeAccountButton = prepareActionButton(lock, Color.DARKRED);
+                employeeAccountButton.setOnAction(event -> showLockEmployeeAccountConfirmationWindow(employee));
+            }
+            else
+            {
+                Glyph unlock = AppUtils.getFontAwesome().create("\uf09c").size(iconSize).color(Color.DARKGREEN);
+                employeeAccountButton = prepareActionButton(unlock, Color.DARKGREEN);
+                employeeAccountButton.setOnAction(event -> showUnlockEmployeeAccountConfirmationWindow(employee));
+            }
+        } catch(SQLException e) {
+            e.printStackTrace(); //TODO REMOVE IT
+        }
+
+        return employeeAccountButton;
     }
 
     private Button prepareActionButton(Glyph icon)
@@ -162,6 +179,15 @@ public class EmployeesModule extends Module
         return actionButton;
     }
 
+    private Button prepareActionButton(Glyph icon, Color iconColor)
+    {
+        Button actionButton = new Button("", icon);
+        actionButton.setStyle("-fx-pref-width: 35px; -fx-pref-height: 25px; -fx-font-size: 12px; -fx-background-color: transparent;");
+        actionButton.setOnMouseEntered(event -> actionButton.setGraphic(icon.color(Color.valueOf("#0099ff"))));
+        actionButton.setOnMouseExited(event -> actionButton.setGraphic(icon.color(iconColor)));
+        return actionButton;
+    }
+
     private void showEmployeeModificationWindow(Employee employee)
     {
         EmployeeInfoForm.setEmployeeInfo(employee);
@@ -170,10 +196,17 @@ public class EmployeesModule extends Module
         stage.setTitle("Aktualizacja danych o pracowniku");
         stage.setScene(scene);
         stage.setResizable(false);
+        EmployeeInfoForm.setStage(stage);
         stage.show();
     }
 
-    private void showEmployeeDismissalConfirmationWindow(Employee employee)
+    private boolean checkIfAccountIsActive(long employeeId) throws SQLException
+    {
+        Dao<User, Long> dao = DaoManager.createDao(DatabaseManager.INSTANCE.getConnectionSource(), User.class);
+        return dao.queryForFirst(dao.queryBuilder().where().eq("employee_id", employeeId).prepare()).isActive();
+    }
+
+    private void showLockEmployeeAccountConfirmationWindow(Employee employee)
     {
         Alert confirmActionDialog = new Alert(Alert.AlertType.CONFIRMATION);
         confirmActionDialog.setTitle("Wyłączenie konta pracownika");
@@ -184,15 +217,42 @@ public class EmployeesModule extends Module
         });
     }
 
-    private void disableEmployeeAccount(Employee employee) //TODO mark account as disabled instead of deleting it
+    private void disableEmployeeAccount(Employee employee)
+    {
+        updateEmployeeAccount(employee, false, "Wyłączono konto pracownika!");
+    }
+
+    private void showUnlockEmployeeAccountConfirmationWindow(Employee employee)
+    {
+        Alert confirmActionDialog = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmActionDialog.setTitle("Włączenie konta pracownika");
+        confirmActionDialog.setHeaderText("Czy chcesz włączyć konto pracownika: " + employee.getName() + " " + employee.getSurname() + "?");
+        confirmActionDialog.showAndWait().ifPresent(result -> {
+            if(result == ButtonType.OK)
+                enableEmployeeAccount(employee);
+        });
+    }
+
+    private void enableEmployeeAccount(Employee employee)
+    {
+        updateEmployeeAccount(employee, true, "Włączono konto pracownika!");
+    }
+
+    private void updateEmployeeAccount(Employee employee, boolean active, String appStatusInfo)
     {
         try {
-            Dao<Employee, Long> dao = DaoManager.createDao(DatabaseManager.INSTANCE.getConnectionSource(), Employee.class);
-            dao.delete(employee);
+            Dao<Employee, Long> employeeDao = DaoManager.createDao(DatabaseManager.INSTANCE.getConnectionSource(), Employee.class);
+            long employeeId = employeeDao.extractId(employee);
+
+            Dao<User, Long> dao = DaoManager.createDao(DatabaseManager.INSTANCE.getConnectionSource(), User.class);
+            User user = dao.queryForFirst(dao.queryBuilder().where().eq("employee_id", employeeId).prepare());
+            user.setActive(active);
+            dao.update(user);
+
             showAllEmployees();
-            AppStatus.showAppStatus(AppStatusType.OK, "Wyłączono konto pracownika!");
+            AppStatus.showAppStatus(AppStatusType.OK, appStatusInfo);
         } catch(SQLException e) {
-            AppStatus.showAppStatus(AppStatusType.ERROR, "Nie udało się wyłączyć konta pracownika!");
+            AppStatus.showAppStatus(AppStatusType.ERROR, "Nie udało się włączyć/wyłączyć konta pracownika!");
         }
     }
 
@@ -243,6 +303,7 @@ public class EmployeesModule extends Module
         stage.setTitle("Aktualizacja danych o stanowisku");
         stage.setScene(scene);
         stage.setResizable(false);
+        JobInfoForm.setStage(stage);
         stage.show();
     }
 
@@ -315,6 +376,7 @@ public class EmployeesModule extends Module
         stage.setTitle("Nowe stanowisko");
         stage.setScene(scene);
         stage.setResizable(false);
+        NewJobTitleForm.setStage(stage);
         stage.show();
     }
 
@@ -322,5 +384,31 @@ public class EmployeesModule extends Module
     {
         WorkReportsModule workReportsModule = new WorkReportsModule();
         workReportsModuleContainer.getChildren().add(workReportsModule.loadModuleToContainer());
+    }
+
+    @Override
+    public void configureModule()//TODO
+    {
+        switch(MainModule.getLoggedInUserGroup())
+        {
+            case ADMIN:
+                // Configure TableView (set proper info when data is not available)
+                employees.setPlaceholder(new Label("Brak pracowników!"));
+                jobTitles.setPlaceholder(new Label("Brak stanowisk!"));
+
+                setCellValueFactoryForEmployeeTableColumns();
+                setCellValueFactoryForJobTitleTableColumns();
+
+                showAllEmployees();
+                showJobTitles();
+
+                mainContainer.setExpandedPane(mainContainer.getPanes().get(0));
+                break;
+            case EMPLOYEE:
+                // Remove TitledPanes: "Employees" and "Jobs"
+                mainContainer.getPanes().remove(0, 2);
+                mainContainer.setExpandedPane(mainContainer.getPanes().get(0));
+                break;
+        }
     }
 }

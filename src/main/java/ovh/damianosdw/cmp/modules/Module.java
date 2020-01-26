@@ -62,4 +62,6 @@ public abstract class Module
             throw new ModuleLoadErrorException(e.getMessage() + "\n" + e.fillInStackTrace());
         }
     }
+
+    public abstract void configureModule();
 }

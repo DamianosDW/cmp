@@ -23,6 +23,7 @@ import ovh.damianosdw.cmp.Main;
 import ovh.damianosdw.cmp.exceptions.DatabaseErrorException;
 import ovh.damianosdw.cmp.exceptions.ModuleLoadErrorException;
 import ovh.damianosdw.cmp.misc.AppStatusType;
+import ovh.damianosdw.cmp.misc.UserGroupType;
 import ovh.damianosdw.cmp.utils.AppUtils;
 import ovh.damianosdw.cmp.utils.DatabaseManager;
 import ovh.damianosdw.cmp.utils.database.models.User;
@@ -54,6 +55,7 @@ public class LoginSystem extends Module
     @FXML
     void initialize()
     {
+        //DatabaseManager.INSTANCE.clearDatabase();
         DatabaseManager.INSTANCE.initDatabase();
         bindElementsToProperProperties();
         loadAppStatusModule();
@@ -102,14 +104,31 @@ public class LoginSystem extends Module
             String login = loginField.getText().trim();
             User user = getUserCredentials(login);
 
-            if(user != null && BCrypt.checkpw(passwordField.getText().trim(), user.getPassword()))
+            if(user != null)
             {
-                MainModule mainModule = new MainModule();
-                Main.getMainStage().setScene(new Scene(mainModule.loadModuleToContainer()));
-                AppStatus.showAppStatus(AppStatusType.OK, "Zalogowano pomyślnie!");
+                if(user.isActive())
+                {
+                    if(BCrypt.checkpw(passwordField.getText().trim(), user.getPassword()))
+                    {
+                        MainModule mainModule = new MainModule();
+                        MainModule.setLoggedInEmployee(user.getEmployee());
+
+                        if(user.getUserGroup().getName().equals("ADMIN"))
+                            MainModule.setLoggedInUserGroup(UserGroupType.ADMIN);
+                        else if(user.getUserGroup().getName().equals("EMPLOYEE"))
+                            MainModule.setLoggedInUserGroup(UserGroupType.EMPLOYEE);
+
+                        Main.getMainStage().setScene(new Scene(mainModule.loadModuleToContainer()));
+                        AppStatus.showAppStatus(AppStatusType.OK, "Zalogowano pomyślnie!");
+                    }
+                    else
+                        AppStatus.showAppStatus(AppStatusType.WARNING, "Nieprawidłowy login lub hasło!");
+                }
+                else
+                    AppStatus.showAppStatus(AppStatusType.WARNING, "Twoje konto zostało zablokowane!");
             }
             else
-                throw new DatabaseErrorException("Invalid login or password!");
+                throw new DatabaseErrorException("Invalid login!");
         } catch(SQLException e) {
             AppStatus.showAppStatus(AppStatusType.ERROR, "Wystąpił problem z bazą danych! Nie można się zalogować.");
             e.printStackTrace(); //TODO REMOVE IT
@@ -135,5 +154,11 @@ public class LoginSystem extends Module
     public void load() throws ModuleLoadErrorException
     {
         throw new ModuleLoadErrorException("This method is disabled! Use loadModuleToContainer().");
+    }
+
+    @Override
+    public void configureModule()
+    {
+
     }
 }

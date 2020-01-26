@@ -8,6 +8,7 @@ package ovh.damianosdw.cmp.utils;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import lombok.Getter;
 import org.controlsfx.glyphfont.GlyphFont;
 import org.controlsfx.glyphfont.GlyphFontRegistry;
@@ -61,5 +62,11 @@ public class AppUtils
         alert.setTitle("Informacja");
         alert.setHeaderText(info);
         alert.show();
+    }
+
+    public static void closeAppWindow(Stage stage)
+    {
+        if(stage != null)
+            stage.close();
     }
 }
