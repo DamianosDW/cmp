@@ -38,6 +38,9 @@ public class EmployeesModule extends Module
     }
 
     @FXML
+    private Accordion mainContainer;
+
+    @FXML
     private TableView<Employee> employees;
     @FXML
     private TableView<JobTitle> jobTitles;
@@ -71,17 +74,8 @@ public class EmployeesModule extends Module
     void initialize()
     {
         giveThisControllerToOtherModules();
-
-        // Configure TableView (set proper info when data is not available)
-        employees.setPlaceholder(new Label("Brak pracowników!"));
-        jobTitles.setPlaceholder(new Label("Brak stanowisk!"));
-
-        setCellValueFactoryForEmployeeTableColumns();
-        setCellValueFactoryForJobTitleTableColumns();
-
-        showAllEmployees();
-        showJobTitles();
         loadWorkReportsModule();
+        configureModule();
     }
 
     private void giveThisControllerToOtherModules()
@@ -390,5 +384,31 @@ public class EmployeesModule extends Module
     {
         WorkReportsModule workReportsModule = new WorkReportsModule();
         workReportsModuleContainer.getChildren().add(workReportsModule.loadModuleToContainer());
+    }
+
+    @Override
+    public void configureModule()//TODO
+    {
+        switch(MainModule.getLoggedInUserGroup())
+        {
+            case ADMIN:
+                // Configure TableView (set proper info when data is not available)
+                employees.setPlaceholder(new Label("Brak pracowników!"));
+                jobTitles.setPlaceholder(new Label("Brak stanowisk!"));
+
+                setCellValueFactoryForEmployeeTableColumns();
+                setCellValueFactoryForJobTitleTableColumns();
+
+                showAllEmployees();
+                showJobTitles();
+
+                mainContainer.setExpandedPane(mainContainer.getPanes().get(0));
+                break;
+            case EMPLOYEE:
+                // Remove TitledPanes: "Employees" and "Jobs"
+                mainContainer.getPanes().remove(0, 2);
+                mainContainer.setExpandedPane(mainContainer.getPanes().get(0));
+                break;
+        }
     }
 }

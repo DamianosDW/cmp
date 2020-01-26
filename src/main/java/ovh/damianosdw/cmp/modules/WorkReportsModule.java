@@ -29,6 +29,8 @@ public class WorkReportsModule extends Module
     }
 
     @FXML
+    private TabPane mainContainer;
+    @FXML
     private TextField name;
     @FXML
     private TextField surname;
@@ -46,12 +48,7 @@ public class WorkReportsModule extends Module
     void initialize()
     {
         showLoggedInUserInfo();
-
-        // Configure TableView (set proper info when data is not available)
-        workReportsTable.setPlaceholder(new Label("Brak sprawozdań!"));
-
-        setCellValueFactoryForWorkReportsTableColumns();
-        showWorkReports();
+        configureModule();
     }
 
     private void showLoggedInUserInfo()
@@ -116,5 +113,24 @@ public class WorkReportsModule extends Module
     private void clearWorkReportForm()
     {
         workReport.clear();
+    }
+
+    @Override
+    public void configureModule()
+    {
+        switch(MainModule.getLoggedInUserGroup())
+        {
+            case ADMIN:
+                // Configure TableView (set proper info when data is not available)
+                workReportsTable.setPlaceholder(new Label("Brak sprawozdań!"));
+
+                setCellValueFactoryForWorkReportsTableColumns();
+                showWorkReports();
+                break;
+            case EMPLOYEE:
+                // Remove "Work reports" tab
+                mainContainer.getTabs().remove(1);
+                break;
+        }
     }
 }

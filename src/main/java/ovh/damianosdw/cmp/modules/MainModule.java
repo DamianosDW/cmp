@@ -6,12 +6,14 @@
 package ovh.damianosdw.cmp.modules;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import lombok.Getter;
 import lombok.Setter;
 import ovh.damianosdw.cmp.exceptions.ModuleLoadErrorException;
+import ovh.damianosdw.cmp.misc.UserGroupType;
 import ovh.damianosdw.cmp.utils.database.models.Employee;
 
 public class MainModule extends Module
@@ -26,12 +28,16 @@ public class MainModule extends Module
 
     @FXML
     private MenuButton info;
+    @FXML
+    private Button employeesModuleButton;
 
     @FXML @Getter
     private HBox appStatusContainer;
 
     @Setter @Getter
     private static Employee loggedInEmployee;
+    @Setter @Getter
+    private static UserGroupType loggedInUserGroup;
     @Getter
     private static boolean debugMode = checkIfAppIsRunningInDebugMode();
 
@@ -39,6 +45,7 @@ public class MainModule extends Module
     void initialize()
     {
         giveThisControllerToOtherModules();
+        configureModule();
     }
 
     private static boolean checkIfAppIsRunningInDebugMode() //TODO GET INFO FROM CONFIG FILE
@@ -69,5 +76,19 @@ public class MainModule extends Module
     {
         EmployeesModule employeesModule = new EmployeesModule();
         employeesModule.load();
+    }
+
+    @Override
+    public void configureModule()
+    {
+        switch(loggedInUserGroup)
+        {
+            case ADMIN:
+
+                break;
+            case EMPLOYEE:
+                employeesModuleButton.setText("Sprawozdania");
+                break;
+        }
     }
 }

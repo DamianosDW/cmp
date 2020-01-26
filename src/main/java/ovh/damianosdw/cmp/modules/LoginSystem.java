@@ -23,6 +23,7 @@ import ovh.damianosdw.cmp.Main;
 import ovh.damianosdw.cmp.exceptions.DatabaseErrorException;
 import ovh.damianosdw.cmp.exceptions.ModuleLoadErrorException;
 import ovh.damianosdw.cmp.misc.AppStatusType;
+import ovh.damianosdw.cmp.misc.UserGroupType;
 import ovh.damianosdw.cmp.utils.AppUtils;
 import ovh.damianosdw.cmp.utils.DatabaseManager;
 import ovh.damianosdw.cmp.utils.database.models.User;
@@ -111,6 +112,12 @@ public class LoginSystem extends Module
                     {
                         MainModule mainModule = new MainModule();
                         MainModule.setLoggedInEmployee(user.getEmployee());
+
+                        if(user.getUserGroup().getName().equals("ADMIN"))
+                            MainModule.setLoggedInUserGroup(UserGroupType.ADMIN);
+                        else if(user.getUserGroup().getName().equals("EMPLOYEE"))
+                            MainModule.setLoggedInUserGroup(UserGroupType.EMPLOYEE);
+
                         Main.getMainStage().setScene(new Scene(mainModule.loadModuleToContainer()));
                         AppStatus.showAppStatus(AppStatusType.OK, "Zalogowano pomyślnie!");
                     }
@@ -147,5 +154,11 @@ public class LoginSystem extends Module
     public void load() throws ModuleLoadErrorException
     {
         throw new ModuleLoadErrorException("This method is disabled! Use loadModuleToContainer().");
+    }
+
+    @Override
+    public void configureModule()
+    {
+
     }
 }
