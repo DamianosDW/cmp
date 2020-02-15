@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="970.0" style="-fx-border-width: 5; -fx-border-color: #0099ff;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ovh.damianosdw.cmp.modules.WorkHolidayModule">
+   <children>
+      <TabPane fx:id="mainContainer" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab closable="false" text="Uzyskanie urlopu">
+               <content>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0" styleClass="transparentBackground">
+                     <children>
+                        <Label text="Formularz uzyskania urlopu">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <VBox alignment="TOP_CENTER" spacing="5.0">
+                           <children>
+                              <Label text="Rodzaj:">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="type" prefWidth="275.0" />
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0" spacing="75.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" spacing="5.0">
+                                 <children>
+                                    <Label text="Rozpoczęcie urlopu:">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker fx:id="startDate" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" spacing="5.0">
+                                 <children>
+                                    <Label text="Zakończenie urlopu:">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker fx:id="endDate" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox alignment="TOP_CENTER" spacing="5.0">
+                           <padding>
+                              <Insets left="175.0" right="175.0" />
+                           </padding>
+                           <children>
+                              <Label text="Powód (opcjonalny):">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="reason" prefHeight="150.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                        <Button fx:id="sendButton" mnemonicParsing="false" onAction="#sendWorkHolidayInfo" text="Wyślij!" />
+                     </children>
+                     <padding>
+                        <Insets top="25.0" />
+                     </padding>
+                  </VBox>
+               </content>
+          </Tab>
+            <Tab text="Mój urlop">
+               <content>
+                  <VBox alignment="TOP_CENTER" spacing="25.0" styleClass="transparentBackground">
+                     <children>
+                        <Label text="Mój urlop">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <VBox alignment="CENTER">
+                           <children>
+                              <HBox alignment="TOP_CENTER" spacing="5.0">
+                                 <children>
+                                    <Label text="Masz jeszcze urlop przez:">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="daysLeft" text="...">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="dni">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="TOP_CENTER" spacing="5.0">
+                                 <children>
+                                    <Label text="W tym roku możesz wykorzystać jeszcze">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="daysLeftInYear" text="...">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="dni">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                           <children>
+                              <Label text="Historia:">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="workHolidaysHistory" minHeight="400.0" prefHeight="400.0">
+                                <columns>
+                                  <TableColumn prefWidth="125.0" resizable="false" text="Od" />
+                                  <TableColumn prefWidth="125.0" resizable="false" text="Do" />
+                                    <TableColumn prefWidth="175.0" resizable="false" text="Typ" />
+                                    <TableColumn prefWidth="483.0" text="Powód" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+          <Tab text="Lista wszystkich urlopów ">
+               <content>
+                  <VBox alignment="TOP_CENTER" spacing="25.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" spacing="5.0">
+                           <children>
+                              <Label text="Urlopy">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Tutaj można zaakceptować dany urlop lub go odrzucić. Za każdym razem zostanie wysłane powiadomienie do pracownika.">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <HBox>
+                           <children>
+                              <TableView fx:id="allWorkHolidaysTable" prefHeight="500.0" style="-fx-background-color: transparent;">
+                                 <columns>
+                                    <TableColumn editable="false" prefWidth="205.0" sortable="false" text="Imię i nazwisko" />
+                                    <TableColumn editable="false" prefWidth="175.0" resizable="false" text="Termin urlopu">
+                                       <columns>
+                                          <TableColumn prefWidth="114.0" resizable="false" text="Od" />
+                                          <TableColumn prefWidth="114.0" resizable="false" text="Do" />
+                                       </columns>
+                                    </TableColumn>
+                                    <TableColumn editable="false" prefWidth="150.0" resizable="false" text="Typ urlopu" />
+                                    <TableColumn editable="false" prefWidth="245.0" sortable="false" text="Powód" />
+                                 </columns>
+                              </TableView>
+                              <VBox alignment="TOP_CENTER" prefWidth="80.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="57.0" prefWidth="80.0" style="-fx-background-color: #80ccff; -fx-border-width: 0;" text="Akcja" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ScrollPane fitToWidth="true" prefHeight="468.0" prefWidth="200.0">
+                                       <content>
+                                          <VBox fx:id="containerForActionButtons" alignment="TOP_CENTER" />
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Button fx:id="refreshWorkHolidaysButton" mnemonicParsing="false" onAction="#showAllWorkHolidays" text="Odśwież tabelę" />
+                     </children>
+                     <padding>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </padding>
+                  </VBox>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
