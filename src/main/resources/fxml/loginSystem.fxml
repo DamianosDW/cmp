@@ -15,7 +15,7 @@
    <children>
       <BorderPane layoutX="5.0" layoutY="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <VBox alignment="TOP_CENTER" spacing="50.0" styleClass="defaultContainer">
+            <VBox alignment="TOP_CENTER" spacing="50.0" styleClass="transparentBackground">
                <children>
                   <Label text="Company Management Panel">
                      <font>
@@ -64,7 +64,7 @@
             </VBox>
          </center>
          <bottom>
-            <HBox fx:id="appStatusContainer" alignment="CENTER_LEFT" prefHeight="50.0" styleClass="defaultContainer" BorderPane.alignment="CENTER">
+            <HBox fx:id="appStatusContainer" alignment="CENTER_LEFT" prefHeight="50.0" styleClass="transparentBackground" BorderPane.alignment="CENTER">
                <padding>
                   <Insets left="25.0" right="25.0" />
                </padding>

@@ -3,7 +3,7 @@
  * https://damianosdw.ovh
  */
 
-.defaultContainer
+.transparentBackground
 {
     -fx-background-color: transparent;
 }
@@ -157,4 +157,11 @@
 .table-view
 {
     -fx-font-size: 14px;
+}
+
+.table-view .column-header
+{
+    -fx-background-color: #80ccff;
+    -fx-border-width: 1;
+    -fx-border-color: silver;
 }

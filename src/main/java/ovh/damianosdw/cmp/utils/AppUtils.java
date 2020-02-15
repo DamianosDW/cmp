@@ -8,8 +8,11 @@ package ovh.damianosdw.cmp.utils;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import lombok.Getter;
+import org.controlsfx.glyphfont.Glyph;
 import org.controlsfx.glyphfont.GlyphFont;
 import org.controlsfx.glyphfont.GlyphFontRegistry;
 
@@ -68,5 +71,30 @@ public class AppUtils
     {
         if(stage != null)
             stage.close();
+    }
+
+    public static HBox prepareContainerForActionButtons()
+    {
+        HBox container = new HBox();
+        container.setStyle("-fx-pref-height: 25px; -fx-alignment: center; -fx-spacing: 5;");
+        return container;
+    }
+
+    public static Button prepareActionButton(Glyph icon)
+    {
+        Button actionButton = new Button("", icon);
+        actionButton.setStyle("-fx-pref-width: 35px; -fx-pref-height: 25px; -fx-font-size: 12px; -fx-background-color: transparent;");
+        actionButton.setOnMouseEntered(event -> actionButton.setGraphic(icon.color(Color.valueOf("#0099ff"))));
+        actionButton.setOnMouseExited(event -> actionButton.setGraphic(icon.color(Color.BLACK)));
+        return actionButton;
+    }
+
+    public static Button prepareActionButton(Glyph icon, Color iconColor)
+    {
+        Button actionButton = new Button("", icon);
+        actionButton.setStyle("-fx-pref-width: 35px; -fx-pref-height: 25px; -fx-font-size: 12px; -fx-background-color: transparent;");
+        actionButton.setOnMouseEntered(event -> actionButton.setGraphic(icon.color(Color.valueOf("#0099ff"))));
+        actionButton.setOnMouseExited(event -> actionButton.setGraphic(icon.color(iconColor)));
+        return actionButton;
     }
 }
