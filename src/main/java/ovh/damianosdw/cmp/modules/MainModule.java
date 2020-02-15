@@ -78,6 +78,13 @@ public class MainModule extends Module
         employeesModule.load();
     }
 
+    @FXML
+    public void loadWorkHolidayModule()
+    {
+        WorkHolidayModule workHolidayModule = new WorkHolidayModule();
+        workHolidayModule.load();
+    }
+
     @Override
     public void configureModule()
     {

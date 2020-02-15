@@ -47,18 +47,13 @@
                         <MenuItem mnemonicParsing="false" text="do zmiany" />
                     </items>
                   </MenuButton>
+                  <Button mnemonicParsing="false" onAction="#loadWorkHolidayModule" styleClass="customMenuButton" text="Urlopy" textAlignment="CENTER" wrapText="true" />
                   <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Rekrutacja">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Zarządzanie procesem rekrutacyjnym" />
                       <MenuItem mnemonicParsing="false" text="Lista nadesłanych aplikacji" />
                         <MenuItem mnemonicParsing="false" text="123" />
                     </items>
-                  </MenuButton>
-                  <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="System urlopów">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Lista pracowników na urlopie" />
-                        <MenuItem mnemonicParsing="false" text="Zmiana ustawień urlopów" />
-                     </items>
                   </MenuButton>
                   <MenuButton fx:id="info" alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Pozostałe opcje">
                     <items>
