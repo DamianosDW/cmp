@@ -12,7 +12,8 @@ import java.util.Date;
 
 public class CustomDate extends Date
 {
-    public static final String DEFAULT_DATETIME_FORMAT = "dd.MM.yyyy HH:mm:ss";
+    public static final String DEFAULT_DATETIME_FORMAT = "dd.MM.yyyy HH:mm";
+    public static final String DEFAULT_DATE_FORMAT = "dd.MM.yyyy";
     private String format;
 
     public CustomDate()
