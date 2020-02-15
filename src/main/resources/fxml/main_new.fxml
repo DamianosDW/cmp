@@ -14,14 +14,14 @@
    <children>
       <BorderPane fx:id="mainContainer" styleClass="appBackground" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
-            <HBox fx:id="appStatusContainer" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" styleClass="defaultContainer" BorderPane.alignment="CENTER">
+            <HBox fx:id="appStatusContainer" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" styleClass="transparentBackground" BorderPane.alignment="CENTER">
                <padding>
                   <Insets left="25.0" right="25.0" />
                </padding>
             </HBox>
          </bottom>
          <left>
-            <VBox alignment="TOP_CENTER" maxHeight="800.0" prefWidth="225.0" spacing="15.0" styleClass="defaultContainer" BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" maxHeight="800.0" prefWidth="225.0" spacing="15.0" styleClass="transparentBackground" BorderPane.alignment="CENTER">
                <children>
                   <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Finanse">
                     <items>

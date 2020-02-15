@@ -16,11 +16,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="970.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ovh.damianosdw.cmp.modules.WorkReportsModule">
    <children>
-      <TabPane fx:id="mainContainer" styleClass="defaultContainer" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane fx:id="mainContainer" styleClass="transparentBackground" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab closable="false" text="Nowe sprawozdanie">
                <content>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="defaultContainer">
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="transparentBackground">
                      <children>
                         <Label text="Nowe sprawozdanie">
                            <font>
@@ -97,7 +97,7 @@
           </Tab>
           <Tab closable="false" text="Lista sprawozdań">
                <content>
-                  <VBox alignment="TOP_CENTER" spacing="15.0" styleClass="defaultContainer">
+                  <VBox alignment="TOP_CENTER" spacing="15.0" styleClass="transparentBackground">
                      <children>
                         <Label text="Lista sprawozdań">
                            <font>
