@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="970.0" style="-fx-border-width: 5; -fx-border-color: #0099ff;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ovh.damianosdw.cmp.modules.WorkTaskSystem">
+   <children>
+      <Accordion fx:id="mainContainer" styleClass="transparentBackground" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <panes>
+          <TitledPane text="Zadania przypisane do mnie">
+               <content>
+                  <VBox alignment="TOP_CENTER" spacing="10.0">
+                     <children>
+                        <Label text="Kliknij na temat zadania, aby wyświetlić szczegółowe informacje.">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <TableView fx:id="tasksAssignedToMe" prefHeight="560.0">
+                          <columns>
+                            <TableColumn editable="false" minWidth="-1.0" prefWidth="400.0" resizable="false" sortable="false" text="Temat" />
+                            <TableColumn editable="false" minWidth="-1.0" prefWidth="130.0" resizable="false" text="Data utworzenia" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="130.0" resizable="false" text="Data modyfikacji" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="125.0" resizable="false" text="Stan" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="150.0" text="Akcja" />
+                          </columns>
+                        </TableView>
+                        <HBox alignment="CENTER" spacing="75.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#showNewWorkTaskForm" text="Utwórz zadanie" />
+                              <Button fx:id="mineTasksRefreshButton" mnemonicParsing="false" onAction="#refreshTasksAssignedToMe" text="Odśwież tabelę" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+          </TitledPane>
+          <TitledPane text="Lista zadań">
+               <content>
+                  <VBox alignment="TOP_CENTER" spacing="10.0">
+                     <children>
+                        <Label text="Oto lista wszystkich zadań do wykonania.">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <TableView fx:id="uncompletedTasks" prefHeight="560.0">
+                           <columns>
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="350.0" resizable="false" sortable="false" text="Temat" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="140.0" text="Utworzone przez" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="140.0" text="Przypisane do" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="120.0" resizable="false" text="Data utworzenia" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="100.0" resizable="false" text="Stan" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="85.0" text="Akcja" />
+                           </columns>
+                        </TableView>
+                        <HBox alignment="CENTER" spacing="75.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#showNewWorkTaskForm" text="Utwórz zadanie" />
+                              <Button fx:id="tasksRefreshButton" mnemonicParsing="false" onAction="#refreshTasks" text="Odśwież tabelę" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+          </TitledPane>
+          <TitledPane text="Historia zadań">
+               <content>
+                  <VBox alignment="TOP_CENTER" spacing="10.0">
+                     <children>
+                        <Label text="Oto lista wszystkich zadań, które zostały zrobione.">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="completedTasks" prefHeight="560.0">
+                           <columns>
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="450.0" resizable="false" sortable="false" text="Temat" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="150.0" text="Przypisane do" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="120.0" resizable="false" text="Data utworzenia" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="120.0" resizable="false" text="Data modyfikacji" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="95.0" text="Akcja" />
+                           </columns>
+                        </TableView>
+                        <HBox alignment="CENTER" spacing="75.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#showNewWorkTaskForm" text="Utwórz zadanie" />
+                              <Button fx:id="completedTasksRefreshButton" mnemonicParsing="false" onAction="#refreshCompletedTasks" text="Odśwież tabelę" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+   </children>
+</AnchorPane>

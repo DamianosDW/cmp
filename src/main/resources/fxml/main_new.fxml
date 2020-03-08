@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -21,45 +20,20 @@
             </HBox>
          </bottom>
          <left>
-            <VBox alignment="TOP_CENTER" maxHeight="800.0" prefWidth="225.0" spacing="15.0" styleClass="transparentBackground" BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" maxHeight="800.0" prefWidth="225.0" spacing="18.0" styleClass="transparentBackground" BorderPane.alignment="CENTER">
                <children>
-                  <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Finanse">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Wykres zysków i/lub strat" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                      <MenuItem mnemonicParsing="false" text="Zarządzanie finansami" />
-                    </items>
-                  </MenuButton>
-                  <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Zadania">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Rozdzielenie zadań" />
-                      <MenuItem mnemonicParsing="false" text="Lista zadań" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Dodaj zadanie" />
-                    </items>
-                  </MenuButton>
+                  <Button mnemonicParsing="false" onAction="#loadFinancesModule" styleClass="customMenuButton" text="Finanse" />
+                  <Button mnemonicParsing="false" onAction="#loadWorkTaskSystem" styleClass="customMenuButton" text="Zadania" textAlignment="CENTER" wrapText="true" />
                   <Button fx:id="employeesModuleButton" mnemonicParsing="false" onAction="#loadEmployeesModule" styleClass="customMenuButton" text="Pracownicy, stanowiska oraz sprawozdania" textAlignment="CENTER" wrapText="true" />
-                  <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Raporty">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Raport finansowy z miesiąca" />
-                      <MenuItem mnemonicParsing="false" text="Raport finansowy z roku" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="do zmiany" />
-                    </items>
-                  </MenuButton>
                   <Button mnemonicParsing="false" onAction="#loadWorkHolidayModule" styleClass="customMenuButton" text="Urlopy" textAlignment="CENTER" wrapText="true" />
-                  <MenuButton alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Rekrutacja">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Zarządzanie procesem rekrutacyjnym" />
-                      <MenuItem mnemonicParsing="false" text="Lista nadesłanych aplikacji" />
-                        <MenuItem mnemonicParsing="false" text="123" />
-                    </items>
-                  </MenuButton>
                   <MenuButton fx:id="info" alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Pozostałe opcje">
                     <items>
                       <MenuItem mnemonicParsing="false" text="O aplikacji" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />
                     </items>
+                     <VBox.margin>
+                        <Insets bottom="1.0" />
+                     </VBox.margin>
                   </MenuButton>
                </children>
                <BorderPane.margin>

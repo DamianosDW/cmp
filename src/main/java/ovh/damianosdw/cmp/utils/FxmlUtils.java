@@ -17,7 +17,7 @@ public class FxmlUtils
             return loader.load();
         } catch (Exception e) {
             logger.error("[CMP] Nie udało się załadować okna modułu! Szczegółowe informacje: " + e.fillInStackTrace());
-            throw new ModuleLoadErrorException(e.getMessage() + "\n" + e.fillInStackTrace());
+            throw new ModuleLoadErrorException();
         }
     }
 
