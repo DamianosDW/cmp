@@ -139,10 +139,11 @@ public class WorkTaskSystem extends Module
     private void setCellValueFactoryForTasksAssignedToMeTableColumns()
     {
         tasksAssignedToMe.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
-        tasksAssignedToMe.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("creationDate"));
-        tasksAssignedToMe.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("updateDate"));
-        tasksAssignedToMe.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("status"));
-        tasksAssignedToMe.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("containerForActionButtons"));
+        tasksAssignedToMe.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("priority"));
+        tasksAssignedToMe.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("status"));
+        tasksAssignedToMe.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("creationDate"));
+        tasksAssignedToMe.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("updateDate"));
+        tasksAssignedToMe.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("containerForActionButtons"));
     }
 
     private void setCellValueFactoryForUncompletedTasksTableColumns()
@@ -150,7 +151,7 @@ public class WorkTaskSystem extends Module
         uncompletedTasks.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
         uncompletedTasks.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("creator"));
         uncompletedTasks.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("assignedTo"));
-        uncompletedTasks.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("creationDate"));
+        uncompletedTasks.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("priority"));
         uncompletedTasks.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("status"));
         uncompletedTasks.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("containerForActionButtons"));
     }
@@ -159,9 +160,10 @@ public class WorkTaskSystem extends Module
     {
         completedTasks.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("name"));
         completedTasks.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("assignedTo"));
-        completedTasks.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("creationDate"));
-        completedTasks.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("updateDate"));
-        completedTasks.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("containerForActionButtons"));
+        completedTasks.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("priority"));
+        completedTasks.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("creationDate"));
+        completedTasks.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("updateDate"));
+        completedTasks.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("containerForActionButtons"));
     }
 
     @Override

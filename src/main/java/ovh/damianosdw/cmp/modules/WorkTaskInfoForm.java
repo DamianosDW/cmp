@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import lombok.Setter;
 import ovh.damianosdw.cmp.misc.AppStatusType;
 import ovh.damianosdw.cmp.misc.CustomDate;
+import ovh.damianosdw.cmp.misc.WorkTaskPriority;
 import ovh.damianosdw.cmp.misc.WorkTaskStatus;
 import ovh.damianosdw.cmp.utils.AppUtils;
 import ovh.damianosdw.cmp.utils.DatabaseManager;
@@ -42,6 +43,8 @@ public class WorkTaskInfoForm extends Module
     private ComboBox<Employee> assignedTo;
     @FXML
     private ComboBox<WorkTaskStatus> status;
+    @FXML
+    private ComboBox<WorkTaskPriority> priority;
     @FXML
     private TextField creationDate;
     @FXML
@@ -80,13 +83,21 @@ public class WorkTaskInfoForm extends Module
 
     private void fillEmployeesComboBoxAndSelectProperOne()
     {
-        try {
+        try
+        {
             assignedTo.getItems().addAll(EmployeesModule.getEmployeesFromDatabase());
             assignedTo.getSelectionModel().select(workTask.getAssignedTo());
-        } catch(SQLException e) {
+        } catch(SQLException e)
+        {
             e.printStackTrace();
             //TODO USE CUSTOM LOGGER
         }
+    }
+
+    private void fillPrioritiesComboBoxAndSelectProperOne()
+    {
+        priority.getItems().addAll(WorkTaskPriority.getAllWorkTaskPriorities());
+        priority.getSelectionModel().select(WorkTaskPriority.getWorkTaskPriorityValue("Normalny"));
     }
 
     private void fillStatusComboBoxAndSelectProperOne()
