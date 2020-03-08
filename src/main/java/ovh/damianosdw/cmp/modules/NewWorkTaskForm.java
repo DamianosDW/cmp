@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import lombok.Setter;
 import ovh.damianosdw.cmp.misc.AppStatusType;
 import ovh.damianosdw.cmp.misc.CustomDate;
+import ovh.damianosdw.cmp.misc.WorkTaskPriority;
 import ovh.damianosdw.cmp.misc.WorkTaskStatus;
 import ovh.damianosdw.cmp.utils.AppUtils;
 import ovh.damianosdw.cmp.utils.DatabaseManager;
@@ -36,6 +37,8 @@ public class NewWorkTaskForm extends Module
     @FXML
     private ComboBox<Employee> employees;
     @FXML
+    private ComboBox<WorkTaskPriority> priorities;
+    @FXML
     private TextArea additionalInfo;
 
     @Setter
@@ -48,6 +51,8 @@ public class NewWorkTaskForm extends Module
     {
         try {
             employees.getItems().addAll(EmployeesModule.getEmployeesFromDatabase());
+            priorities.getItems().addAll(WorkTaskPriority.getAllWorkTaskPriorities());
+            priorities.getSelectionModel().select(WorkTaskPriority.getWorkTaskPriorityValue("Normalny"));
         } catch(SQLException e) {
             e.printStackTrace();
             //TODO USE CUSTOM LOGGER
@@ -64,6 +69,7 @@ public class NewWorkTaskForm extends Module
                         .name(taskName.getText())
                         .creator(MainModule.getLoggedInEmployee())
                         .assignedTo(employees.getValue())
+                        .priority(priorities.getValue().getPriority())
                         .creationDate(new CustomDate())
                         .additionalInfo(additionalInfo.getText())
                         .build();

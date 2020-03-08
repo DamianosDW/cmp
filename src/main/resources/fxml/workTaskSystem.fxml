@@ -25,10 +25,11 @@
                            </font></Label>
                         <TableView fx:id="tasksAssignedToMe" prefHeight="560.0">
                           <columns>
-                            <TableColumn editable="false" minWidth="-1.0" prefWidth="400.0" resizable="false" sortable="false" text="Temat" />
+                            <TableColumn editable="false" minWidth="-1.0" prefWidth="275.0" resizable="false" sortable="false" text="Temat" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="125.0" resizable="false" text="Priorytet" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="125.0" resizable="false" text="Stan" />
                             <TableColumn editable="false" minWidth="-1.0" prefWidth="130.0" resizable="false" text="Data utworzenia" />
                               <TableColumn editable="false" minWidth="-1.0" prefWidth="130.0" resizable="false" text="Data modyfikacji" />
-                              <TableColumn editable="false" minWidth="-1.0" prefWidth="125.0" resizable="false" text="Stan" />
                               <TableColumn editable="false" minWidth="-1.0" prefWidth="150.0" text="Akcja" />
                           </columns>
                         </TableView>
@@ -55,7 +56,7 @@
                               <TableColumn editable="false" minWidth="-1.0" prefWidth="350.0" resizable="false" sortable="false" text="Temat" />
                               <TableColumn editable="false" minWidth="-1.0" prefWidth="140.0" text="Utworzone przez" />
                               <TableColumn editable="false" minWidth="-1.0" prefWidth="140.0" text="Przypisane do" />
-                              <TableColumn editable="false" minWidth="-1.0" prefWidth="120.0" resizable="false" text="Data utworzenia" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="120.0" resizable="false" text="Priorytet" />
                               <TableColumn editable="false" minWidth="-1.0" prefWidth="100.0" resizable="false" text="Stan" />
                               <TableColumn editable="false" minWidth="-1.0" prefWidth="85.0" text="Akcja" />
                            </columns>
@@ -81,8 +82,9 @@
                         </Label>
                         <TableView fx:id="completedTasks" prefHeight="560.0">
                            <columns>
-                              <TableColumn editable="false" minWidth="-1.0" prefWidth="450.0" resizable="false" sortable="false" text="Temat" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="325.0" resizable="false" sortable="false" text="Temat" />
                               <TableColumn editable="false" minWidth="-1.0" prefWidth="150.0" text="Przypisane do" />
+                              <TableColumn editable="false" minWidth="-1.0" prefWidth="125.0" resizable="false" text="Priorytet" />
                               <TableColumn editable="false" minWidth="-1.0" prefWidth="120.0" resizable="false" text="Data utworzenia" />
                               <TableColumn editable="false" minWidth="-1.0" prefWidth="120.0" resizable="false" text="Data modyfikacji" />
                               <TableColumn editable="false" minWidth="-1.0" prefWidth="95.0" text="Akcja" />

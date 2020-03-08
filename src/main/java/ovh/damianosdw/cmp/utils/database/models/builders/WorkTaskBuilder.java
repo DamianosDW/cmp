@@ -14,6 +14,7 @@ public class WorkTaskBuilder
     private long taskId;
     private String name;
     private String status;
+    private String priority;
     private Employee creator;
     private Employee assignedTo;
     private CustomDate creationDate;
@@ -40,6 +41,12 @@ public class WorkTaskBuilder
     public WorkTaskBuilder status(String status)
     {
         this.status = status;
+        return this;
+    }
+
+    public WorkTaskBuilder priority(String priority)
+    {
+        this.priority = priority;
         return this;
     }
 
@@ -75,6 +82,6 @@ public class WorkTaskBuilder
 
     public WorkTask build()
     {
-        return new WorkTask(taskId, name, status, creator, assignedTo, creationDate, updateDate, additionalInfo);
+        return new WorkTask(taskId, name, status, priority, creator, assignedTo, creationDate, updateDate, additionalInfo);
     }
 }

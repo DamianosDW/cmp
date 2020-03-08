@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="600.0" style="-fx-border-width: 5; -fx-border-color: #0099ff;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ovh.damianosdw.cmp.modules.WorkTaskInfoForm">
    <children>
-      <VBox fx:id="mainContainer" alignment="TOP_CENTER" layoutX="446.0" layoutY="206.0" spacing="15.0" styleClass="transparentBackground" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="mainContainer" alignment="TOP_CENTER" layoutX="446.0" layoutY="206.0" spacing="5.0" styleClass="transparentBackground" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label text="Zadanie">
                <font>
@@ -43,7 +43,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="creator" editable="false" prefWidth="250.0">
+                        <TextField fx:id="creator" editable="false" prefWidth="225.0">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -57,7 +57,31 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="assignedTo" prefWidth="250.0" />
+                        <ComboBox fx:id="assignedTo" prefWidth="225.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="25.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="100.0" spacing="5.0">
+                     <children>
+                        <Label text="Priorytet:">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="priority" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <Label text="Stan:">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="status" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
                      </children>
                   </VBox>
                </children>
@@ -71,7 +95,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="creationDate" editable="false" prefWidth="150.0">
+                        <TextField fx:id="creationDate" editable="false" prefWidth="175.0">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -85,21 +109,11 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="updateDate" editable="false" prefWidth="150.0">
+                        <TextField fx:id="updateDate" editable="false" prefWidth="175.0">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" spacing="5.0">
-                     <children>
-                        <Label text="Stan:">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="status" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
                      </children>
                   </VBox>
                </children>
@@ -111,7 +125,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="additionalInfo" maxWidth="400.0" prefHeight="100.0">
+                  <TextArea fx:id="additionalInfo" maxWidth="300.0" prefHeight="100.0">
                      <font>
                         <Font size="14.0" />
                      </font>
