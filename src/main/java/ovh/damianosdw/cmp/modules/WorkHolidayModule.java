@@ -53,10 +53,6 @@ public class WorkHolidayModule extends Module
     private Button sendButton;
 
     @FXML
-    private Label daysLeft;
-    @FXML
-    private Label daysLeftInYear;
-    @FXML
     private TableView<WorkHoliday> workHolidaysHistory;
 
     @FXML

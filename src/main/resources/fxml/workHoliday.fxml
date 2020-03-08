@@ -97,48 +97,6 @@
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
-                        <VBox alignment="CENTER">
-                           <children>
-                              <HBox alignment="TOP_CENTER" spacing="5.0">
-                                 <children>
-                                    <Label text="Masz jeszcze urlop przez:">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="daysLeft" text="...">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <Label text="dni">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                              <HBox alignment="TOP_CENTER" spacing="5.0">
-                                 <children>
-                                    <Label text="W tym roku możesz wykorzystać jeszcze">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="daysLeftInYear" text="...">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <Label text="dni">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
                         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                            <children>
                               <Label text="Historia:">
@@ -146,7 +104,7 @@
                                     <Font name="System Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <TableView fx:id="workHolidaysHistory" minHeight="400.0" prefHeight="400.0">
+                              <TableView fx:id="workHolidaysHistory" minHeight="-Infinity" prefHeight="575.0">
                                 <columns>
                                   <TableColumn prefWidth="125.0" resizable="false" text="Od" />
                                   <TableColumn prefWidth="125.0" resizable="false" text="Do" />
