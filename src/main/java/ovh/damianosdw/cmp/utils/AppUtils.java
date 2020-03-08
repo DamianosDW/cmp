@@ -6,6 +6,10 @@
 package ovh.damianosdw.cmp.utils;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -15,6 +19,8 @@ import lombok.Getter;
 import org.controlsfx.glyphfont.Glyph;
 import org.controlsfx.glyphfont.GlyphFont;
 import org.controlsfx.glyphfont.GlyphFontRegistry;
+import ovh.damianosdw.cmp.misc.AppStatusType;
+import ovh.damianosdw.cmp.modules.AppStatus;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -96,5 +102,26 @@ public class AppUtils
         actionButton.setOnMouseEntered(event -> actionButton.setGraphic(icon.color(Color.valueOf("#0099ff"))));
         actionButton.setOnMouseExited(event -> actionButton.setGraphic(icon.color(iconColor)));
         return actionButton;
+    }
+
+    public static Button prepareActionButton(Glyph icon, Color iconColor, EventHandler<ActionEvent> eventHandler)
+    {
+        Button actionButton = new Button("", icon);
+        actionButton.setStyle("-fx-pref-width: 35px; -fx-pref-height: 25px; -fx-font-size: 12px; -fx-background-color: transparent; -fx-padding: 0;");
+        actionButton.setOnMouseEntered(event -> actionButton.setGraphic(icon.color(Color.valueOf("#0099ff"))));
+        actionButton.setOnMouseExited(event -> actionButton.setGraphic(icon.color(iconColor)));
+        actionButton.setOnAction(eventHandler);
+        return actionButton;
+    }
+
+    public static Stage showModuleInNewWindowAndGetStage(String windowName, Parent container)
+    {
+        Stage stage = new Stage();
+        stage.setTitle(windowName);
+        stage.setResizable(false);
+        stage.setScene(new Scene(container));
+        stage.show();
+        AppStatus.showAppStatus(AppStatusType.OK, "Załadowano okno: " + windowName);
+        return stage;
     }
 }

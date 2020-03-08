@@ -85,6 +85,13 @@ public class MainModule extends Module
         workHolidayModule.load();
     }
 
+    @FXML
+    public void loadWorkTaskSystem()
+    {
+        WorkTaskSystem workTaskSystem = new WorkTaskSystem();
+        workTaskSystem.load();
+    }
+
     @Override
     public void configureModule()
     {
