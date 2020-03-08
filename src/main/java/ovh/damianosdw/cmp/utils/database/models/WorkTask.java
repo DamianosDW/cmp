@@ -26,6 +26,8 @@ public class WorkTask
     private String name;
     @DatabaseField(columnName = "status", canBeNull = false)
     private String status;
+    @DatabaseField(columnName = "priority", canBeNull = false)
+    private String priority;
     @DatabaseField(columnName = "creator", foreign = true, foreignAutoRefresh = true, canBeNull = false)
     private Employee creator;
     @DatabaseField(columnName = "assigned_to", foreign = true, foreignAutoRefresh = true)
