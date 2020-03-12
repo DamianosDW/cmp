@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import lombok.Setter;
 import ovh.damianosdw.cmp.misc.AppStatusType;
+import ovh.damianosdw.cmp.misc.Sex;
 import ovh.damianosdw.cmp.utils.AppUtils;
 import ovh.damianosdw.cmp.utils.DatabaseManager;
 import ovh.damianosdw.cmp.utils.database.models.Employee;
@@ -32,6 +33,8 @@ public class EmployeeInfoForm
     @FXML
     private ComboBox<JobTitle> jobTitles;
     @FXML
+    private ComboBox<Sex> sex;
+    @FXML
     private TextField salary;
     @FXML
     private TextArea contact;
@@ -49,7 +52,10 @@ public class EmployeeInfoForm
     void initialize()
     {
         try {
-            jobTitles.getItems().addAll(employeesModule.getJobTitlesFromDatabase());
+            if(employeesModule != null)
+                jobTitles.getItems().addAll(employeesModule.getJobTitlesFromDatabase());
+
+            sex.getItems().addAll(Sex.MALE, Sex.FEMALE);
             fillFormWithEmployeeInfo();
         } catch(Exception e) {
             AppStatus.showAppStatus(AppStatusType.ERROR, "Nie udało się przygotować modułu do pracy!");
@@ -63,6 +69,7 @@ public class EmployeeInfoForm
         name.setText(employeeInfo.getName());
         surname.setText(employeeInfo.getSurname());
         jobTitles.getSelectionModel().select(employeeInfo.getJobTitle());
+        sex.getSelectionModel().select(Sex.getSexValue(employeeInfo.getSex()));
         salary.setText(employeeInfo.getSalary() + "");
         contact.setText(employeeInfo.getContact());
     }
@@ -80,6 +87,7 @@ public class EmployeeInfoForm
                     .name(name.getText())
                     .surname(surname.getText())
                     .jobTitle(jobTitles.getSelectionModel().getSelectedItem())
+                    .sex(sex.getSelectionModel().getSelectedItem().getSex())
                     .salary(BigDecimal.valueOf(Double.parseDouble(salary.getText())))
                     .contact(contact.getText())
                     .build();

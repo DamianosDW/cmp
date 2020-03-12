@@ -119,7 +119,7 @@ public class EmployeesModule extends Module
         }
     }
 
-    private List<Employee> getEmployeesFromDatabase() throws SQLException
+    public static List<Employee> getEmployeesFromDatabase() throws SQLException
     {
         Dao<Employee, Long> dao = DaoManager.createDao(DatabaseManager.INSTANCE.getConnectionSource(), Employee.class);
         return DatabaseManager.INSTANCE.getAllRecordsFromTable(dao);
