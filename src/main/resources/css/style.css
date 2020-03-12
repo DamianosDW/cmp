@@ -22,7 +22,7 @@
     -fx-background-color: #80ccff;
     -fx-text-fill: black;
     -fx-pref-width: 225px;
-    -fx-pref-height: 100px;
+    -fx-pref-height: 145px;
     -fx-background-radius: 0;
     -fx-border-radius: 0;
     -fx-border-width: 2px;
@@ -43,7 +43,7 @@
     -fx-background-color: #80ccff;
     -fx-text-fill: black;
     -fx-pref-width: 225px;
-    -fx-pref-height: 100px;
+    -fx-pref-height: 145px;
     -fx-background-radius: 0;
     -fx-border-radius: 0;
     -fx-border-width: 2px;
@@ -63,6 +63,16 @@
     -fx-background-color: #0099ff;
     -fx-text-fill: white;
 }
+
+.menu-button:hover .label
+{
+    -fx-text-fill: black;
+}
+
+/*.menu-button:hover .arrow*/
+/*{*/
+/*    -fx-background-color: white;*/
+/*}*/
 
 .menu-item
 {
@@ -110,6 +120,15 @@
     -fx-mark-color: white;
     -fx-focus-color: #0066ff;
     -fx-text-fill: white;
+}
+
+.accordion .titled-pane .title
+{
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-animated: true;
 }
 
 /* BUTTON */
@@ -164,4 +183,37 @@
     -fx-background-color: #80ccff;
     -fx-border-width: 1;
     -fx-border-color: silver;
+}
+
+.table-view .table-cell
+{
+    -fx-text-fill: black;
+}
+
+.table-row-cell
+{
+    -fx-text-fill: black;
+}
+
+.table-row-cell:odd
+{
+    -fx-text-fill: black;
+}
+
+.table-row-cell:selected
+{
+    -fx-background-color: #e6e6e6;
+    -fx-text-fill: black;
+}
+
+/* HYPERLINK */
+.hyperlink
+{
+    -fx-text-fill: #0099ff;
+    -fx-underline: false;
+}
+
+.hyperlink:hover
+{
+    -fx-text-fill: #006bb3;
 }

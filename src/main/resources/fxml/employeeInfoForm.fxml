@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="600.0" styleClass="transparentBackground" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ovh.damianosdw.cmp.modules.EmployeeInfoForm">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="600.0" styleClass="transparentBackground" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ovh.damianosdw.cmp.modules.EmployeeInfoForm">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="250.0" layoutY="179.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
@@ -56,19 +56,36 @@
                   </VBox>
                </children>
             </HBox>
-            <VBox alignment="CENTER" prefHeight="100.0" spacing="5.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                <children>
-                  <Label text="Stanowisko:">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="jobTitles" prefWidth="450.0" />
+                  <VBox alignment="CENTER" prefHeight="100.0" spacing="5.0">
+                     <children>
+                        <Label text="Płeć:">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="sex" prefWidth="225.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </padding>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" spacing="5.0">
+                     <children>
+                        <Label text="Stanowisko:">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="jobTitles" prefWidth="225.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </padding>
+                  </VBox>
                </children>
-               <padding>
-                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-               </padding>
-            </VBox>
+            </HBox>
             <VBox alignment="CENTER" prefHeight="100.0" spacing="5.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0">

@@ -17,6 +17,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.passay.CharacterData;
 import org.passay.*;
 import ovh.damianosdw.cmp.misc.AppStatusType;
+import ovh.damianosdw.cmp.misc.CustomDate;
+import ovh.damianosdw.cmp.misc.Sex;
 import ovh.damianosdw.cmp.utils.AppUtils;
 import ovh.damianosdw.cmp.utils.DatabaseManager;
 import ovh.damianosdw.cmp.utils.database.models.Employee;
@@ -40,6 +42,8 @@ public class NewEmployeeForm
     private TextField surname;
     @FXML
     private ComboBox<JobTitle> jobTitles;
+    @FXML
+    private ComboBox<Sex> sex;
     @FXML
     private TextField salary;
     @FXML
@@ -68,6 +72,7 @@ public class NewEmployeeForm
                 salaryRangeInfo.setText(jobSalaryRanges.get(newValue.getName()));
             }));
 
+            sex.getItems().addAll(Sex.FEMALE, Sex.MALE);
             groups.getItems().addAll(getUserGroupsFromDatabase());
             // Select "EMPLOYEE" group
             groups.getSelectionModel().select(1);
@@ -85,7 +90,7 @@ public class NewEmployeeForm
     @FXML
     public void addNewEmployeeToDatabase()
     {
-        boolean fieldsContainData = !name.getText().isEmpty() && !surname.getText().isEmpty() && !jobTitles.getSelectionModel().isEmpty() && !salary.getText().isEmpty() && !contact.getText().isEmpty();
+        boolean fieldsContainData = !name.getText().isEmpty() && !surname.getText().isEmpty() && !jobTitles.getSelectionModel().isEmpty() && !sex.getSelectionModel().isEmpty() && !salary.getText().isEmpty() && !contact.getText().isEmpty();
 
         if(fieldsContainData)
         {
@@ -94,6 +99,7 @@ public class NewEmployeeForm
             String employeeSurname = surname.getText();
             BigDecimal employeeSalary = BigDecimal.valueOf(Double.parseDouble(salary.getText()));
             String employeeContact = contact.getText();
+            String employeeSex = sex.getSelectionModel().getSelectedItem().getSex();
 
             try {
                 Employee newEmployee = EmployeeBuilder.builder()
@@ -101,6 +107,8 @@ public class NewEmployeeForm
                         .surname(employeeSurname)
                         .jobTitle(employeeJobTitle)
                         .salary(employeeSalary)
+                        .sex(employeeSex)
+                        .workStartDate(new CustomDate())
                         .contact(employeeContact)
                         .build();
 
@@ -134,8 +142,9 @@ public class NewEmployeeForm
                 .build();
     }
 
-    private String generateUserPassword()
+    private String generateUserPassword() //TODO RESTORE DEFAULT ACTION
     {
+        //return "employee";
         PasswordGenerator generator = new PasswordGenerator();
         CharacterData upperCaseCharacters = EnglishCharacterData.UpperCase;
         CharacterRule upperCaseRule = new CharacterRule(upperCaseCharacters);
