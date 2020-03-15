@@ -15,7 +15,7 @@
    <children>
       <Accordion fx:id="mainContainer" styleClass="transparentBackground" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <panes>
-          <TitledPane text="Zadania przypisane do mnie">
+          <TitledPane text="Zadania przypisane do mnie lub utworzone przeze mnie">
                <content>
                   <VBox alignment="TOP_CENTER" spacing="10.0">
                      <children>

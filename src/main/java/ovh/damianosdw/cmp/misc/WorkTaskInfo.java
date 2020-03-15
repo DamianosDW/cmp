@@ -34,6 +34,7 @@ public class WorkTaskInfo
     private WorkTaskStatus status;
     private Hyperlink creator;
     private Hyperlink assignedTo;
+    private WorkTaskPriority priority;
     private CustomDate creationDate;
     private CustomDate updateDate;
     private HBox containerForActionButtons;
@@ -50,6 +51,7 @@ public class WorkTaskInfo
         this.status = WorkTaskStatus.getWorkTaskStatus(task.getStatus());
         this.creator = prepareEmployeeHyperlink(task.getCreator());
         this.assignedTo = prepareEmployeeHyperlink(task.getAssignedTo());
+        this.priority = WorkTaskPriority.getWorkTaskPriorityValue(task.getPriority());
         this.creationDate = task.getCreationDate();
         this.updateDate = task.getUpdateDate();
         this.workTask = task;

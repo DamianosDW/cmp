@@ -71,7 +71,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="priority" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+                        <ComboBox fx:id="priority" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" spacing="5.0">
@@ -81,7 +81,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="status" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+                        <ComboBox fx:id="status" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
                      </children>
                   </VBox>
                </children>
@@ -95,7 +95,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="creationDate" editable="false" prefWidth="175.0">
+                        <TextField fx:id="creationDate" editable="false" prefWidth="225.0">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -109,7 +109,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="updateDate" editable="false" prefWidth="175.0">
+                        <TextField fx:id="updateDate" editable="false" prefWidth="225.0">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -125,7 +125,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="additionalInfo" maxWidth="300.0" prefHeight="100.0">
+                  <TextArea fx:id="additionalInfo" maxWidth="550.0" prefHeight="100.0">
                      <font>
                         <Font size="14.0" />
                      </font>

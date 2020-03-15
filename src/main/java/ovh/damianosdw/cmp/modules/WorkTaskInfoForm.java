@@ -78,6 +78,7 @@ public class WorkTaskInfoForm extends Module
         if(workTask.getAdditionalInfo() != null)
             additionalInfo.setText(workTask.getAdditionalInfo());
         fillEmployeesComboBoxAndSelectProperOne();
+        fillPrioritiesComboBoxAndSelectProperOne();
         fillStatusComboBoxAndSelectProperOne();
     }
 
@@ -97,7 +98,7 @@ public class WorkTaskInfoForm extends Module
     private void fillPrioritiesComboBoxAndSelectProperOne()
     {
         priority.getItems().addAll(WorkTaskPriority.getAllWorkTaskPriorities());
-        priority.getSelectionModel().select(WorkTaskPriority.getWorkTaskPriorityValue("Normalny"));
+        priority.getSelectionModel().select(WorkTaskPriority.getWorkTaskPriorityValue(workTask.getPriority()));
     }
 
     private void fillStatusComboBoxAndSelectProperOne()
@@ -145,9 +146,8 @@ public class WorkTaskInfoForm extends Module
             case EMPLOYEE:
                 // Disable proper fields
                 taskName.setEditable(false);
-                assignedTo.setDisable(true);
 
-                if(workTask.getAssignedTo().getEmployeeId() != MainModule.getLoggedInEmployee().getEmployeeId())
+                if(workTask.getAssignedTo() != null && workTask.getAssignedTo().getEmployeeId() != MainModule.getLoggedInEmployee().getEmployeeId())
                     mainContainer.getChildren().remove(updateButton);
                 break;
         }
