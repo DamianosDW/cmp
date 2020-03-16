@@ -60,9 +60,6 @@ public class EmployeesModule extends Module
     private VBox containerForJobActionButtons;
 
     @FXML
-    private VBox workReportsModuleContainer;
-
-    @FXML
     private Button refreshEmployeesButton;
 
     @FXML
@@ -74,7 +71,6 @@ public class EmployeesModule extends Module
     void initialize()
     {
         giveThisControllerToOtherModules();
-        loadWorkReportsModule();
         configureModule();
     }
 
@@ -380,12 +376,6 @@ public class EmployeesModule extends Module
         stage.show();
     }
 
-    private void loadWorkReportsModule()
-    {
-        WorkReportsModule workReportsModule = new WorkReportsModule();
-        workReportsModuleContainer.getChildren().add(workReportsModule.loadModuleToContainer());
-    }
-
     @Override
     public void configureModule()//TODO
     {
@@ -405,8 +395,6 @@ public class EmployeesModule extends Module
                 mainContainer.setExpandedPane(mainContainer.getPanes().get(0));
                 break;
             case EMPLOYEE:
-                // Remove TitledPanes: "Employees" and "Jobs"
-                mainContainer.getPanes().remove(0, 2);
                 mainContainer.setExpandedPane(mainContainer.getPanes().get(0));
                 break;
         }

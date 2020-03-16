@@ -79,6 +79,13 @@ public class MainModule extends Module
     }
 
     @FXML
+    public void loadWorkReportsModule()
+    {
+        WorkReportsModule workReportsModule = new WorkReportsModule();
+        workReportsModule.load();
+    }
+
+    @FXML
     public void loadWorkHolidayModule()
     {
         WorkHolidayModule workHolidayModule = new WorkHolidayModule();
@@ -102,6 +109,7 @@ public class MainModule extends Module
                 break;
             case EMPLOYEE:
                 employeesModuleButton.setText("Sprawozdania");
+                employeesModuleButton.setDisable(true);
                 break;
         }
     }

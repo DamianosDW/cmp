@@ -102,14 +102,6 @@
                   </VBox>
                </content>
           </TitledPane>
-          <TitledPane alignment="CENTER" text="Sprawozdania">
-               <content>
-                  <VBox fx:id="workReportsModuleContainer" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" />
-               </content>
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-          </TitledPane>
         </panes>
       </Accordion>
    </children>
