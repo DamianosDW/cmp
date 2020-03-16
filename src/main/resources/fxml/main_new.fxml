@@ -22,9 +22,9 @@
          <left>
             <VBox alignment="TOP_CENTER" maxHeight="800.0" prefWidth="225.0" spacing="18.0" styleClass="transparentBackground" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#loadFinancesModule" styleClass="customMenuButton" text="Finanse" />
                   <Button mnemonicParsing="false" onAction="#loadWorkTaskSystem" styleClass="customMenuButton" text="Zadania" textAlignment="CENTER" wrapText="true" />
-                  <Button fx:id="employeesModuleButton" mnemonicParsing="false" onAction="#loadEmployeesModule" styleClass="customMenuButton" text="Pracownicy, stanowiska oraz sprawozdania" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="employeesModuleButton" mnemonicParsing="false" onAction="#loadEmployeesModule" styleClass="customMenuButton" text="Pracownicy oraz stanowiska" textAlignment="CENTER" wrapText="true" />
+                  <Button mnemonicParsing="false" onAction="#loadWorkReportsModule" styleClass="customMenuButton" text="Sprawozdania" />
                   <Button mnemonicParsing="false" onAction="#loadWorkHolidayModule" styleClass="customMenuButton" text="Urlopy" textAlignment="CENTER" wrapText="true" />
                   <MenuButton fx:id="info" alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Pozostałe opcje">
                     <items>
