@@ -28,8 +28,8 @@
                   <Button mnemonicParsing="false" onAction="#loadWorkHolidayModule" styleClass="customMenuButton" text="Urlopy" textAlignment="CENTER" wrapText="true" />
                   <MenuButton fx:id="info" alignment="CENTER" mnemonicParsing="false" popupSide="RIGHT" text="Pozostałe opcje">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="O aplikacji" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                      <MenuItem mnemonicParsing="false" onAction="#showAppInfo" text="O aplikacji" />
+                      <MenuItem mnemonicParsing="false" onAction="#loadPasswordChanger" text="Zmiana hasła" />
                     </items>
                      <VBox.margin>
                         <Insets bottom="1.0" />
