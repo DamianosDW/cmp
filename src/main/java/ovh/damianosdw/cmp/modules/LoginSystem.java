@@ -56,6 +56,7 @@ public class LoginSystem extends Module
     void initialize()
     {
         //DatabaseManager.INSTANCE.clearDatabase();
+        ConfigFileModule.prepareConfigFile();
         DatabaseManager.INSTANCE.initDatabase();
         bindElementsToProperProperties();
         loadAppStatusModule();
