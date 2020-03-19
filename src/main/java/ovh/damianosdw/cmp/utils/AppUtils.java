@@ -73,6 +73,14 @@ public class AppUtils
         alert.show();
     }
 
+    public static void showInformationAlertAndWait(String info)
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informacja");
+        alert.setHeaderText(info);
+        alert.showAndWait();
+    }
+
     public static void closeAppWindow(Stage stage)
     {
         if(stage != null)
