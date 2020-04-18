@@ -6,6 +6,7 @@
 package ovh.damianosdw.cmp.modules;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.BorderPane;
@@ -13,6 +14,7 @@ import javafx.scene.layout.HBox;
 import lombok.Getter;
 import lombok.Setter;
 import ovh.damianosdw.cmp.exceptions.ModuleLoadErrorException;
+import ovh.damianosdw.cmp.misc.AppStatusType;
 import ovh.damianosdw.cmp.misc.UserGroupType;
 import ovh.damianosdw.cmp.utils.database.models.Employee;
 
@@ -97,6 +99,25 @@ public class MainModule extends Module
     {
         WorkTaskSystem workTaskSystem = new WorkTaskSystem();
         workTaskSystem.load();
+    }
+
+    @FXML
+    public void showAppInfo()
+    {
+        Alert appInfoDialog = new Alert(Alert.AlertType.INFORMATION);
+        appInfoDialog.setHeaderText("O aplikacji");
+        appInfoDialog.setTitle("Company Management Panel");
+        appInfoDialog.setResizable(false);
+        appInfoDialog.setContentText("Aplikacja wspomagająca zarządzanie firmą.\nAutorem aplikacji jest Damian Wańdyga (DamianosDW).");
+        appInfoDialog.show();
+        AppStatus.showAppStatus(AppStatusType.OK, "Wyświetlono okno");
+    }
+
+    @FXML
+    public void loadPasswordChanger()
+    {
+        PasswordChanger passwordChanger = new PasswordChanger();
+        passwordChanger.load();
     }
 
     @Override
