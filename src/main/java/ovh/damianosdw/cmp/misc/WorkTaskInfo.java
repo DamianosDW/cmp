@@ -127,7 +127,6 @@ public class WorkTaskInfo
             }
         } catch(SQLException e) {
             AppStatus.showAppStatus(AppStatusType.ERROR, "Nie udało się przypisać zadania do pracownika!");
-            //TODO USE CUSTOM LOGGER
         }
     }
 

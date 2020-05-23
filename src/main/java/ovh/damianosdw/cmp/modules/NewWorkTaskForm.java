@@ -55,7 +55,6 @@ public class NewWorkTaskForm extends Module
             priorities.getSelectionModel().select(WorkTaskPriority.getWorkTaskPriorityValue("Normalny"));
         } catch(SQLException e) {
             e.printStackTrace();
-            //TODO USE CUSTOM LOGGER
         }
     }
 

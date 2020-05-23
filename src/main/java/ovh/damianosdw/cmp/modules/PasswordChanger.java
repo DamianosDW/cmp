@@ -57,7 +57,7 @@ public class PasswordChanger extends Module
                 AppStatus.showAppStatus(AppStatusType.WARNING, "Twoje aktualne hasło nie zgadza się!");
 
         } catch(SQLException e) {
-            e.printStackTrace(); //TODO REMOVE IT
+            e.printStackTrace();
             AppStatus.showAppStatus(AppStatusType.ERROR, "Nie udało się zmienić hasła!");
         }
     }

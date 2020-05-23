@@ -185,7 +185,6 @@ public class WorkTaskSystem extends Module
                     mainContainer.setExpandedPane(mainContainer.getPanes().get(0));
                 } catch(SQLException e) {
                     AppStatus.showAppStatus(AppStatusType.ERROR, "Nie udało się przygotować modułu do pracy!");
-                    //TODO USE CUSTOM LOGGER
                 }
         }
     }

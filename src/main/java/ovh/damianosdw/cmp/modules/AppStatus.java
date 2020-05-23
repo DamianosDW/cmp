@@ -34,36 +34,12 @@ public class AppStatus
     private static final Glyph debug = AppUtils.getFontAwesome().create("\uf188").size(iconSize).color(Color.valueOf("#3399ff"));
     private static final Glyph undefined = AppUtils.getFontAwesome().create("\uf059").size(iconSize).color(Color.DARKGRAY);
 
-//    private static Label dbStatus = prepareDbStatusIndicator();
-
     public static void showAppStatus(AppStatusType type, String message)
     {
         if(mainModule == null)
             showAppStatusInLoginSystem(type, message);
         else
             showAppStatusInMainModule(type, message);
-        //TODO REMOVE IT
-//        if(mainModule.getAppStatusContainer().getChildren().contains(dbStatus))
-//        {
-//            mainModule.getAppStatusContainer().getChildren().remove(dbStatus);
-//            mainModule.getAppStatusContainer().getChildren().add(dbStatus);
-//        }
-//        else
-//            mainModule.getAppStatusContainer().getChildren().add(dbStatus);
-//
-//
-//        ExecutorService executorService = Executors.newSingleThreadExecutor();
-//        executorService.execute(() -> {
-//            try {
-//                TimeUnit.SECONDS.sleep(5);
-//                changeDbStatus("orange");
-//                TimeUnit.SECONDS.sleep(5);
-//                changeDbStatus("red");
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        });
-        //TODO REMOVE IT
     }
 
     private static void showAppStatusInLoginSystem(AppStatusType type, String message)
@@ -133,25 +109,9 @@ public class AppStatus
                     loginSystem.getAppStatusContainer().getChildren().clear();
                 else
                     mainModule.getAppStatusContainer().getChildren().clear();
-
-//                if(!mainModule.getAppStatusContainer().getChildren().contains(dbStatus)) //TODO REMOVE IT
-//                    mainModule.getAppStatusContainer().getChildren().add(dbStatus);
             });
         });
 
         hideAppStatusTask.shutdown();
     }
-//
-//    private static Label prepareDbStatusIndicator() //TODO ADD FUNCTIONALITY
-//    {
-//        Label dbStatus = new Label();
-//        dbStatus.setStyle("-fx-background-radius: 25; -fx-pref-width: 25; -fx-pref-height: 25; -fx-background-color: green;");
-//
-//        return dbStatus;
-//    }
-//
-//    private static void changeDbStatus(String color)
-//    {
-//        Platform.runLater(() -> dbStatus.setStyle("-fx-background-radius: 25; -fx-pref-width: 25; -fx-pref-height: 25; -fx-background-color: " + color + ";"));
-//    }
 }

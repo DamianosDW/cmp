@@ -50,7 +50,7 @@ public enum UserGroupType
             result = dao.query(dao.queryBuilder().selectColumns("group_id", "name").where().eq("name", groupName).prepare());
         } catch (SQLException e) {
             AppUtils.showWarningAlert("Nie udało się uzyskać informacji o grupie użytkownika! Aplikacja nie może bez tego korzystać i dlatego zostanie automatycznie wyłączona!");
-            e.printStackTrace(); //TODO REMOVE IT
+            e.printStackTrace();
             AppUtils.stopApp();
         }
 

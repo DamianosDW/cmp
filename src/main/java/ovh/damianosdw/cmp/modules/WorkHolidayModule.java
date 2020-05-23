@@ -333,7 +333,7 @@ public class WorkHolidayModule extends Module
             workHolidaysHistory.getItems().clear();
             workHolidaysHistory.getItems().addAll(workHolidays);
         } catch(SQLException e) {
-            e.printStackTrace(); //TODO REMOVE IT
+            e.printStackTrace();
         }
     }
 
