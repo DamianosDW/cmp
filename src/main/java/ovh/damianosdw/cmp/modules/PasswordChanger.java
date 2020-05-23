@@ -45,7 +45,10 @@ public class PasswordChanger extends Module
                 if(checkIfNewPasswordsAreTheSame())
                 {
                     Dao<User, Long> dao = DaoManager.createDao(DatabaseManager.INSTANCE.getConnectionSource(), User.class);
-                    User currentUser = dao.queryForFirst(dao.queryBuilder().where().eq("employee_id", MainModule.getLoggedInEmployee().getEmployeeId()).prepare());
+                    User currentUser = dao.queryForFirst(dao.queryBuilder()
+                            .where()
+                            .eq("employee_id", MainModule.getLoggedInEmployee().getEmployeeId())
+                            .prepare());
                     currentUser.setPassword(BCrypt.hashpw(newPassword.getText(), BCrypt.gensalt()));
                     dao.update(currentUser);
                     AppStatus.showAppStatus(AppStatusType.OK, "Zmieniono hasło do konta!");
