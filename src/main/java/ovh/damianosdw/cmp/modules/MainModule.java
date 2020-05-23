@@ -50,9 +50,9 @@ public class MainModule extends Module
         configureModule();
     }
 
-    private static boolean checkIfAppIsRunningInDebugMode() //TODO GET INFO FROM CONFIG FILE
+    private static boolean checkIfAppIsRunningInDebugMode()
     {
-        return true;
+        return Boolean.parseBoolean(ConfigFileModule.getOptionValue("debugMode"));
     }
 
     private void giveThisControllerToOtherModules()
