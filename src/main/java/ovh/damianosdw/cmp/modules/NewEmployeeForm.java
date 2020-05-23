@@ -14,6 +14,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import lombok.Setter;
 import org.mindrot.jbcrypt.BCrypt;
+import org.passay.CharacterData;
+import org.passay.*;
 import ovh.damianosdw.cmp.misc.AppStatusType;
 import ovh.damianosdw.cmp.misc.CustomDate;
 import ovh.damianosdw.cmp.misc.Sex;
@@ -140,33 +142,32 @@ public class NewEmployeeForm
                 .build();
     }
 
-    private String generateUserPassword() //TODO RESTORE DEFAULT ACTION
+    private String generateUserPassword()
     {
-        return "employee";
-//        PasswordGenerator generator = new PasswordGenerator();
-//        CharacterData upperCaseCharacters = EnglishCharacterData.UpperCase;
-//        CharacterRule upperCaseRule = new CharacterRule(upperCaseCharacters);
-//        upperCaseRule.setNumberOfCharacters(3);
-//
-//        CharacterData digits = EnglishCharacterData.Digit;
-//        CharacterRule digitRule = new CharacterRule(digits);
-//        digitRule.setNumberOfCharacters(4);
-//
-//        CharacterData specialCharacters = new CharacterData() {
-//            public String getErrorCode()
-//            {
-//                return DigestDictionaryRule.ERROR_CODE;
-//            }
-//
-//            public String getCharacters()
-//            {
-//                return "!@#$%^&*()_+;<>?/";
-//            }
-//        };
-//
-//        CharacterRule specialCharactersRule = new CharacterRule(specialCharacters);
-//        specialCharactersRule.setNumberOfCharacters(2);
-//
-//        return generator.generatePassword(10, upperCaseRule, digitRule, specialCharactersRule);
+        PasswordGenerator generator = new PasswordGenerator();
+        CharacterData upperCaseCharacters = EnglishCharacterData.UpperCase;
+        CharacterRule upperCaseRule = new CharacterRule(upperCaseCharacters);
+        upperCaseRule.setNumberOfCharacters(3);
+
+        CharacterData digits = EnglishCharacterData.Digit;
+        CharacterRule digitRule = new CharacterRule(digits);
+        digitRule.setNumberOfCharacters(4);
+
+        CharacterData specialCharacters = new CharacterData() {
+            public String getErrorCode()
+            {
+                return DigestDictionaryRule.ERROR_CODE;
+            }
+
+            public String getCharacters()
+            {
+                return "!@#$%^&*()_+;<>?/";
+            }
+        };
+
+        CharacterRule specialCharactersRule = new CharacterRule(specialCharacters);
+        specialCharactersRule.setNumberOfCharacters(2);
+
+        return generator.generatePassword(10, upperCaseRule, digitRule, specialCharactersRule);
     }
 }
