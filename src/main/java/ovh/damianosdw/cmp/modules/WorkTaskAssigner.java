@@ -61,7 +61,6 @@ public class WorkTaskAssigner extends Module
         } catch(SQLException e) {
             AppStatus.showAppStatus(AppStatusType.ERROR, "Nie udało się przypisać zadania pracownikowi!");
             e.printStackTrace();
-            //TODO USE CUSTOM LOGGER
         }
     }
 
@@ -81,7 +80,6 @@ public class WorkTaskAssigner extends Module
         } catch(SQLException e) {
             AppStatus.showAppStatus(AppStatusType.ERROR, "Nie udało się przypisać zadania!");
             e.printStackTrace();
-            //TODO USE CUSTOM LOGGER
         }
     }
 
@@ -94,7 +92,6 @@ public class WorkTaskAssigner extends Module
             employees.getSelectionModel().select(workTask.getAssignedTo());
         } catch(SQLException e) {
             e.printStackTrace();
-            //TODO USE CUSTOM LOGGER
         }
     }
 }

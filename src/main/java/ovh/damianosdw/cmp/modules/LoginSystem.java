@@ -132,11 +132,11 @@ public class LoginSystem extends Module
                 throw new DatabaseErrorException("Invalid login!");
         } catch(SQLException e) {
             AppStatus.showAppStatus(AppStatusType.ERROR, "Wystąpił problem z bazą danych! Nie można się zalogować.");
-            e.printStackTrace(); //TODO REMOVE IT
+            e.printStackTrace();
         } catch(DatabaseErrorException e) {
             AppStatus.showAppStatus(AppStatusType.WARNING, "Nieprawidłowy login lub hasło!");
             AppUtils.disableAndEnableButtonAfterDelay(loginButton);
-            e.printStackTrace(); //TODO REMOVE IT
+            e.printStackTrace();
         }
     }
 

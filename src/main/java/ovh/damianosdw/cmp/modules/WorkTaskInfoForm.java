@@ -91,7 +91,6 @@ public class WorkTaskInfoForm extends Module
         } catch(SQLException e)
         {
             e.printStackTrace();
-            //TODO USE CUSTOM LOGGER
         }
     }
 

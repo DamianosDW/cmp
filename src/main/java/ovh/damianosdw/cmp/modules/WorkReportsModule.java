@@ -74,7 +74,7 @@ public class WorkReportsModule extends Module
             workReportsTable.getItems().addAll(workReports);
             AppUtils.disableAndEnableButtonAfterDelay(refreshWorkReportsButton);
         } catch (SQLException e) {
-            e.printStackTrace(); //TODO REMOVE IT
+            e.printStackTrace();
         }
     }
 
@@ -106,7 +106,7 @@ public class WorkReportsModule extends Module
                 AppUtils.showWarningAlert("Nie uzupełniłeś/aś treści sprawozdania!");
         } catch (SQLException e) {
             AppStatus.showAppStatus(AppStatusType.ERROR, "Nie udało się wysłać sprawozdania z pracy!");
-            e.printStackTrace(); //TODO REMOVE IT
+            e.printStackTrace();
         }
     }
 

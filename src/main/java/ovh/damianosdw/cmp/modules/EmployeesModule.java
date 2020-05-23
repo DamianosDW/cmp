@@ -160,7 +160,7 @@ public class EmployeesModule extends Module
                 employeeAccountButton.setOnAction(event -> showUnlockEmployeeAccountConfirmationWindow(employee));
             }
         } catch(SQLException e) {
-            e.printStackTrace(); //TODO REMOVE IT
+            e.printStackTrace();
         }
 
         return employeeAccountButton;
@@ -377,7 +377,7 @@ public class EmployeesModule extends Module
     }
 
     @Override
-    public void configureModule()//TODO
+    public void configureModule()
     {
         switch(MainModule.getLoggedInUserGroup())
         {

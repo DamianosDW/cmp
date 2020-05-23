@@ -89,8 +89,14 @@ public class WorkTaskSystem extends Module
     {
         Dao<WorkTask, Long> dao = DaoManager.createDao(DatabaseManager.INSTANCE.getConnectionSource(), WorkTask.class);
         long employeeId = MainModule.getLoggedInEmployee().getEmployeeId();
-        //TODO FIX THIS
-        return dao.query(dao.queryBuilder().where().eq("creator", MainModule.getLoggedInEmployee()).or().eq("assigned_to", employeeId).and().notIn("status", WorkTaskStatus.COMPLETED.getStatus()).prepare());
+        return dao.query(dao.queryBuilder()
+                .where()
+                .eq("creator", MainModule.getLoggedInEmployee())
+                .or()
+                .eq("assigned_to", employeeId)
+                .and()
+                .notIn("status", WorkTaskStatus.COMPLETED.getStatus())
+                .prepare());
     }
 
     @FXML
@@ -185,7 +191,6 @@ public class WorkTaskSystem extends Module
                     mainContainer.setExpandedPane(mainContainer.getPanes().get(0));
                 } catch(SQLException e) {
                     AppStatus.showAppStatus(AppStatusType.ERROR, "Nie udało się przygotować modułu do pracy!");
-                    //TODO USE CUSTOM LOGGER
                 }
         }
     }
